@@ -1,6 +1,6 @@
 <?php
 
-namespace LacosFofos;
+namespace LacosFofos\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;

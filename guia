@@ -8,3 +8,6 @@
        - php artisan app:name LacosFofos
        - criar pasta Models
        - mover Model User para pasta Models
+
+3 - Criando estrutura para categorias
+       - Criar model, factory e resource para Category: php artisan make:model Models\Category -m -f -r
