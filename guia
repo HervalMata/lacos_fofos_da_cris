@@ -1,0 +1,10 @@
+1 - Gerando Aplicação API Laravel
+       - composer create-project --prefer-didt laravel/laravel=5.6.* lacos_fofos
+       - alterar .env com dados do mysql
+       - criar banco de daddos: create database lacos_fofos_da_cris
+       - migrar tabelas base do laravel: php artisan migrate
+
+2 - Personalizar nome da aplicação
+       - php artisan app:name LacosFofos
+       - criar pasta Models
+       - mover Model User para pasta Models
