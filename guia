@@ -34,3 +34,9 @@
 11 - Trabalhando com slugs
        - composer require cviebrock/eloquent-sluggable:4.5.*
        - php artisan migrate:refresh --seeder
+
+12 - Melhorando autocomplete da ide
+       - composer require barryvdh/laravel-ide-helper --dev
+       - php artisan ide-helper:generate
+       - php artisan ide-helper:meta
+       - php artisan ide-helper:models
