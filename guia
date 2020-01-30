@@ -28,3 +28,5 @@
        - php artisan make:request CategoryRequest
 
 9 - Atualizando categorias
+
+10 - Excluindo Categorias

@@ -2,7 +2,6 @@
 
 namespace LacosFofos\Http\Controllers\Api;
 
-use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Database\Eloquent\Collection;
 use LacosFofos\Http\Controllers\Controller;
 use LacosFofos\Http\Requests\CategoryRequest;
@@ -50,7 +49,7 @@ class CategoryController extends Controller
      *
      * @param CategoryRequest $request
      * @param Category $category
-     * @return ResponseFactory|\Illuminate\Http\Response
+     * @return \Illuminate\Http\Response
      */
     public function update(CategoryRequest $request, Category $category)
     {
@@ -65,9 +64,12 @@ class CategoryController extends Controller
      *
      * @param Category $category
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        return response([], 204);
     }
 }
