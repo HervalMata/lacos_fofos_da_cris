@@ -22,7 +22,7 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -44,8 +44,8 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \LacosFofos\Models\Category  $category
+     * @param Request $request
+     * @param Category $category
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Category $category)
@@ -56,7 +56,7 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \LacosFofos\Models\Category  $category
+     * @param Category $category
      * @return \Illuminate\Http\Response
      */
     public function destroy(Category $category)
