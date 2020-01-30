@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use LacosFofos\Models\Category;
+use LacosFofos\Models\Product;
 
-class CategoriesTableSeeder extends Seeder
+class ProductsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,6 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Category::class, 5)->create();
+        factory(Product::class, 50)->create();
     }
 }
