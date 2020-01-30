@@ -26,3 +26,5 @@
 
 8 - Validando Categorias
        - php artisan make:request CategoryRequest
+
+9 - Atualizando categorias

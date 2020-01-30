@@ -2,6 +2,7 @@
 
 namespace LacosFofos\Http\Controllers\Api;
 
+use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Database\Eloquent\Collection;
 use LacosFofos\Http\Controllers\Controller;
 use LacosFofos\Http\Requests\CategoryRequest;
@@ -47,13 +48,16 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param CategoryRequest $request
      * @param Category $category
-     * @return \Illuminate\Http\Response
+     * @return ResponseFactory|\Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
-        //
+        $category->fill($request->all());
+        $category->save();
+
+        return response([], 204);
     }
 
     /**
