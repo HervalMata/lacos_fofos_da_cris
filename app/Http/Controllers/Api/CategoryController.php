@@ -23,11 +23,13 @@ class CategoryController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function store(Request $request)
     {
-        //
+        $category = Category::create($request->all() + ['slug' => 'teste']);
+        $category->refresh();
+        return $category;
     }
 
     /**
