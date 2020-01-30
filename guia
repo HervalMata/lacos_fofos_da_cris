@@ -19,6 +19,3 @@
 
 5 - Configurando controller resources
        - php artisan route:list
-
-6 - Recuperando categorias
-       -
