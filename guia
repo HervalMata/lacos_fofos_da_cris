@@ -11,3 +11,8 @@
 
 3 - Criando estrutura para categorias
        - Criar model, factory e resource para Category: php artisan make:model Models\Category -m -f -r
+
+4 - Criando categorias para teste
+       - php artisan migrate
+       - Criar seeder: php artisan make:seeder CategoriesTableSeeder
+       - php artisan db:seed
