@@ -49,14 +49,14 @@ class CategoryController extends Controller
      *
      * @param CategoryRequest $request
      * @param Category $category
-     * @return \Illuminate\Http\Response
+     * @return Category
      */
     public function update(CategoryRequest $request, Category $category)
     {
         $category->fill($request->all());
         $category->save();
 
-        return response([], 204);
+        return $category;
     }
 
     /**
