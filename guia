@@ -30,3 +30,7 @@
 9 - Atualizando categorias
 
 10 - Excluindo Categorias
+
+11 - Trabalhando com slugs
+       - composer require cviebrock/eloquent-sluggable:4.5.*
+       - php artisan migrate:refresh --seeder
