@@ -23,3 +23,6 @@
 6 - Recuperando Categorias
 
 7 - Criando categorias
+
+8 - Validando Categorias
+       - php artisan make:request CategoryRequest

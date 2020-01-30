@@ -4,6 +4,7 @@ namespace LacosFofos\Http\Controllers\Api;
 
 use Illuminate\Database\Eloquent\Collection;
 use LacosFofos\Http\Controllers\Controller;
+use LacosFofos\Http\Requests\CategoryRequest;
 use LacosFofos\Models\Category;
 use Illuminate\Http\Request;
 
@@ -22,10 +23,10 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param CategoryRequest $request
      * @return void
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
         $category = Category::create($request->all() + ['slug' => 'teste']);
         $category->refresh();
