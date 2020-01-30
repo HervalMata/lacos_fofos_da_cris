@@ -16,3 +16,6 @@
        - php artisan migrate
        - Criar seeder: php artisan make:seeder CategoriesTableSeeder
        - php artisan db:seed
+
+5 - Configurando controller resources
+       - php artisan route:list

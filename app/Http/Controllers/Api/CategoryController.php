@@ -1,7 +1,8 @@
 <?php
 
-namespace LacosFofos\Http\Controllers;
+namespace LacosFofos\Http\Controllers\Api;
 
+use LacosFofos\Http\Controllers\Controller;
 use LacosFofos\Models\Category;
 use Illuminate\Http\Request;
 
@@ -13,16 +14,6 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
     {
         //
     }
@@ -45,17 +36,6 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Category $category)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \LacosFofos\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Category $category)
     {
         //
     }
