@@ -18,7 +18,12 @@ class Product extends Model
     {
         return ['slug' => [
             'source' => 'name'
-        ]
+            ]
         ];
     }
+
+    public function categories(){
+        return $this->belongsToMany(Category::class);
+    }
+
 }

@@ -56,3 +56,6 @@ Produtos
 
 16 - Hypermidia e paginação
 
+17 = Criando relacionamento entre categoria e produtos
+       - php artisan make:migration create_category_product_table --create
+
