@@ -58,4 +58,9 @@ Produtos
 
 17 = Criando relacionamento entre categoria e produtos
        - php artisan make:migration create_category_product_table --create
+       - php artisan migrate
+
+18 - Criando endpoints de relaciomamento entre produtos e categorias
+       - php artisan make:controller Api/ProductCategoryController
+
 
