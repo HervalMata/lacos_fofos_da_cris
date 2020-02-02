@@ -93,4 +93,7 @@ Movimentação de estoque
 
 28 - Listando uma entrada de estoque
 
+29 - Criando uma entrada de estoque
+       - php artisan make:request ProductInputRequest
+
 

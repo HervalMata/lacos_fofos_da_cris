@@ -4,6 +4,7 @@ namespace LacosFofos\Http\Controllers\Api;
 
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use LacosFofos\Http\Controllers\Controller;
+use LacosFofos\Http\Requests\ProductInputRequest;
 use LacosFofos\Http\Resources\ProductInputResource;
 use LacosFofos\Models\ProductInput;
 use Illuminate\Http\Request;
@@ -24,12 +25,16 @@ class ProductInputController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param ProductInputRequest $request
+     * @return ProductInputResource
      */
-    public function store(Request $request)
+    public function store(ProductInputRequest $request)
     {
-        //
+        $input = ProductInput::create($request->all());
+        $product = $input->product;
+        $product->stock = $input->amount;
+        $product->save();
+        return new ProductInputResource($input);
     }
 
     /**
@@ -38,8 +43,8 @@ class ProductInputController extends Controller
      * @param ProductInput $Input
      * @return ProductInputResource
      */
-    public function show(ProductInput $Input)
+    public function show(ProductInput $input)
     {
-        return new ProductInputResource($Input);
+        return new ProductInputResource($input);
     }
 }
