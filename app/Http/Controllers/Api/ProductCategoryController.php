@@ -7,6 +7,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use LacosFofos\Http\Controllers\Controller;
+use LacosFofos\Http\Requests\ProductCategoryRequest;
 use LacosFofos\Models\Category;
 use LacosFofos\Models\Product;
 
@@ -25,11 +26,11 @@ class ProductCategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param ProductCategoryRequest $request
      * @param Product $product
      * @return array|JsonResponse
      */
-    public function store(Request $request, Product $product)
+    public function store(ProductCategoryRequest $request, Product $product)
     {
         $changed = $product->categories()->sync($request->categories);
         $categoriesAttachedIds = $changed['attached'];

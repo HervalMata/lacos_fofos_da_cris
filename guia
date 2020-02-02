@@ -70,4 +70,7 @@ Produtos
 
 21 - Inserindo categorias num produto
 
+22 - Validando inserção de categorias em produto
+       - php artisan make:request ProductCategoryRequest
+
 
