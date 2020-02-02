@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use LacosFofos\Http\Controllers\Controller;
 use LacosFofos\Http\Requests\ProductCategoryRequest;
+use LacosFofos\Http\Resources\ProductCategoryResource;
 use LacosFofos\Models\Category;
 use LacosFofos\Models\Product;
 
@@ -16,11 +17,11 @@ class ProductCategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return ProductCategoryResource
      */
     public function index(Product $product)
     {
-        return $product->categories;
+        return new ProductCategoryResource($product);
     }
 
     /**
@@ -36,7 +37,7 @@ class ProductCategoryController extends Controller
         $categoriesAttachedIds = $changed['attached'];
         /** @var Collection $categories */
         $categories = Category::whereIn('id', $categoriesAttachedIds)->get();
-        return $categories->count() ? \response()->json($categories, 201) : [];
+        return $categories->count() ? response()->json(new ProductCategoryResource($product), 201) : [];
     }
 
     /**

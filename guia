@@ -79,4 +79,7 @@ Produtos
        - php artisan make:resource CategoryResource
        - php artisan make:resource ProductResource
 
+25 - Criando serializador para relacionamento entre categoria e produto
+       - php artisan make:resource ProductCategoryResource
+
 
