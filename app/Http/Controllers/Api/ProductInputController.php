@@ -35,11 +35,11 @@ class ProductInputController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \LacosFofos\Models\ProductInput  $productInput
-     * @return \Illuminate\Http\Response
+     * @param ProductInput $Input
+     * @return ProductInputResource
      */
-    public function show(ProductInput $productInput)
+    public function show(ProductInput $Input)
     {
-        //
+        return new ProductInputResource($Input);
     }
 }
