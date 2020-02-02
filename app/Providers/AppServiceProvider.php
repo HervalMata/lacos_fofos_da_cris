@@ -3,6 +3,7 @@
 namespace LacosFofos\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use LacosFofos\Models\ProductInput;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,6 +15,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         \Schema::defaultStringLength(191);
+        ProductInput::created(function ($input) {
+            $product = $input->product;
+            $product->stock += $input->amount;
+            $product->save();
+        });
     }
 
     /**
