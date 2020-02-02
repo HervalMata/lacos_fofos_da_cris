@@ -63,4 +63,7 @@ Produtos
 18 - Criando endpoints de relaciomamento entre produtos e categorias
        - php artisan make:controller Api/ProductCategoryController
 
+19 - Atribuindo categorias a produtos
+       - php artisan migrate:refresh --seed
+
 
