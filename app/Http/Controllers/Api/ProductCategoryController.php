@@ -4,6 +4,7 @@ namespace LacosFofos\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use LacosFofos\Http\Controllers\Controller;
+use LacosFofos\Models\Product;
 
 class ProductCategoryController extends Controller
 {
@@ -12,9 +13,9 @@ class ProductCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Product $product)
     {
-        //
+        return $product->categories;
     }
 
     /**
