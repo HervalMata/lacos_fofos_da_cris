@@ -73,4 +73,6 @@ Produtos
 22 - Validando inserção de categorias em produto
        - php artisan make:request ProductCategoryRequest
 
+23 - Excluindo atribuição de categorias a um produto
+
 
