@@ -2,9 +2,11 @@
 
 namespace LacosFofos\Http\Controllers\Api;
 
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use LacosFofos\Http\Controllers\Controller;
 use LacosFofos\Http\Requests\CategoryRequest;
+use LacosFofos\Http\Resources\CategoryResource;
 use LacosFofos\Models\Category;
 use Illuminate\Http\Request;
 
@@ -13,35 +15,36 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Collection|Category[]
+     * @return AnonymousResourceCollection
      */
     public function index()
     {
-        return Category::all();
+        $categories = CategoryResource::collection(Category::all());
+        return $categories;
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param CategoryRequest $request
-     * @return void
+     * @return CategoryResource
      */
     public function store(CategoryRequest $request)
     {
         $category = Category::create($request->all());
         $category->refresh();
-        return $category;
+        return new CategoryResource($category);
     }
 
     /**
      * Display the specified resource.
      *
      * @param Category $category
-     * @return Category
+     * @return CategoryResource
      */
     public function show(Category $category)
     {
-        return $category;
+        return new CategoryResource($category);
     }
 
     /**
@@ -49,27 +52,27 @@ class CategoryController extends Controller
      *
      * @param CategoryRequest $request
      * @param Category $category
-     * @return Category
+     * @return CategoryResource
      */
     public function update(CategoryRequest $request, Category $category)
     {
         $category->fill($request->all());
         $category->save();
 
-        return $category;
+        return new CategoryResource($category);
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param Category $category
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      * @throws \Exception
      */
     public function destroy(Category $category)
     {
         $category->delete();
 
-        return response([], 204);
+        return response()->json([], 204);
     }
 }
