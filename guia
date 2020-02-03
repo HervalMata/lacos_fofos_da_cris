@@ -103,4 +103,7 @@ Movimentação de estoque
        - php artisan make:seeder ProductOutputsTableSeeder
        - php artisan migrate:refresh --seed
 
+32 - Listando uma saida de estoque
+       - php artisan make:resource ProductOutputResource
+
 
