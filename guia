@@ -121,5 +121,7 @@ Fotos dos produtos
 
 37 - Gerando nome da imagem
 
+38 - Testando upload de imagens
+       - php artisan migrate:refresh --seed
 
 
