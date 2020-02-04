@@ -18,7 +18,7 @@ class ProductOutputsTableSeeder extends Seeder
             ->make()
             ->each(function ($output) use($products) {
                 $product = $products->random();
-                $output->product_id = $products->random()->id;
+                $output->product_id = $product->id;
                 $output->save();
             });
     }

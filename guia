@@ -117,5 +117,7 @@ Fotos dos produtos
 35 - Upload falso de imagens
        - php artisan make:seeder ProductPhotosTableSeeder
 
+36 - Criando registro de imagens
+
 
 
