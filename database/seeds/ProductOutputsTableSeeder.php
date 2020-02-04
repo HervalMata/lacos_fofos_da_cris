@@ -14,11 +14,11 @@ class ProductOutputsTableSeeder extends Seeder
     public function run()
     {
         $products = Product::all();
-        factory(ProductOutput::class, 159)
+        factory(ProductOutput::class, 150)
             ->make()
             ->each(function ($output) use($products) {
                 $product = $products->random();
-                $output->product_id = $product->id;
+                $output->product_id = $products->random()->id;
                 $output->save();
             });
     }

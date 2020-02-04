@@ -110,4 +110,7 @@ Movimentação de estoque
        - php artisan make:rule HasStock
        - php artisan make:request ProductOutputRequest
 
+Fotos dos produtos
+34 - Iniciando modelagem de imagens dos produtos
+       - php artisan make:model Models/ProductPhoto -f -m -r
 
