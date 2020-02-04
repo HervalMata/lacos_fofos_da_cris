@@ -4,6 +4,8 @@ namespace LacosFofos\Models;
 
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Product extends Model
 {
@@ -22,8 +24,19 @@ class Product extends Model
         ];
     }
 
+    /**
+     * @return BelongsToMany
+     */
     public function categories(){
         return $this->belongsToMany(Category::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function photos()
+    {
+        return $this->hasMany(ProductPhoto::class);
     }
 
 }

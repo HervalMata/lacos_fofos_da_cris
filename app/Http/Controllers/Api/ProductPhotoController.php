@@ -1,7 +1,10 @@
 <?php
 
-namespace LacosFofos\Http\Controllers;
+namespace LacosFofos\Http\Controllers\Api;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use LacosFofos\Http\Controllers\Controller;
+use LacosFofos\Models\Product;
 use LacosFofos\Models\ProductPhoto;
 use Illuminate\Http\Request;
 
@@ -10,21 +13,13 @@ class ProductPhotoController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Product $product
+     * @return HasMany
      */
-    public function index()
+    public function index(Product $product)
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $photos = $product->photos;
+        return $photos;
     }
 
     /**
@@ -41,23 +36,16 @@ class ProductPhotoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \LacosFofos\Models\ProductPhoto  $productPhoto
-     * @return \Illuminate\Http\Response
+     * @param Product $product
+     * @param ProductPhoto $photo
+     * @return ProductPhoto
      */
-    public function show(ProductPhoto $productPhoto)
+    public function show(Product $product, ProductPhoto $photo)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \LacosFofos\Models\ProductPhoto  $productPhoto
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ProductPhoto $productPhoto)
-    {
-        //
+        if ($photo->product_id != $product->id) {
+            abort(404);
+        }
+        return $photo;
     }
 
     /**
