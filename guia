@@ -114,3 +114,8 @@ Fotos dos produtos
 34 - Iniciando modelagem de imagens dos produtos
        - php artisan make:model Models/ProductPhoto -f -m -r
 
+35 - Upload falso de imagens
+       - php artisan make:seeder ProductPhotosTableSeeder
+
+
+
