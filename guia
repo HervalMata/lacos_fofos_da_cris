@@ -127,5 +127,9 @@ Fotos dos produtos
 39 - Listando imagens de produtos
 
 40 - Serializando endereco da imagem
+       - php artisan make:resource ProductPhotoResource
+
+41 - Entendendo storage publico e privado
+       - php artisan storage:link
 
 
