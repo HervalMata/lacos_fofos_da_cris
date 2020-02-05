@@ -165,3 +165,6 @@ Administração de usuários
 53 - Listando os usuários
         - php artisan make:controller Api/UsersController --resource
         - php artisan make:resource UserResource
+
+54 - Criando um usuário
+        - php artisan make:request UserRequest
