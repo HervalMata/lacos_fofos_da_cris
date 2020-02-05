@@ -3,7 +3,9 @@
 namespace LacosFofos\Http\Controllers\Api;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use LacosFofos\Http\Controllers\Controller;
+use LacosFofos\Http\Resources\ProductPhotoResource;
 use LacosFofos\Models\Product;
 use LacosFofos\Models\ProductPhoto;
 use Illuminate\Http\Request;
@@ -14,12 +16,12 @@ class ProductPhotoController extends Controller
      * Display a listing of the resource.
      *
      * @param Product $product
-     * @return HasMany
+     * @return AnonymousResourceCollection
      */
     public function index(Product $product)
     {
         $photos = $product->photos;
-        return $photos;
+        return ProductPhotoResource::collection($photos);
     }
 
     /**
