@@ -47,9 +47,7 @@ class ProductPhotoController extends Controller
      */
     public function show(Product $product, ProductPhoto $photo)
     {
-        if ($photo->product_id != $product->id) {
-            abort(404);
-        }
+        $this->assertProductPhoto($photo, $product);
         return new ProductPhotoCollection($photo);
     }
 
@@ -72,12 +70,16 @@ class ProductPhotoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \LacosFofos\Models\ProductPhoto  $productPhoto
-     * @return \Illuminate\Http\Response
+     * @param Product $product
+     * @param ProductPhoto $photo
+     * @return JsonResponse
+     * @throws \Exception
      */
-    public function destroy(ProductPhoto $productPhoto)
+    public function destroy(Product $product, ProductPhoto $photo)
     {
-        //
+        $this->assertProductPhoto($photo, $product);
+        $photo->deleteWithPhoto();
+        return response()->json([], 204);
     }
 
     /**

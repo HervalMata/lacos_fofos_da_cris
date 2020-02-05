@@ -148,3 +148,5 @@ Exclusão lógica
 47 - Iniciando com exclusão lógica
         - php artisan make:migration add_soft_deletes_products_table --table=products
         - php artisan migrate
+
+48 - Exclusão da imagem
