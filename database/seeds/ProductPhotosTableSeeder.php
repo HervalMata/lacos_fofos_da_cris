@@ -44,7 +44,7 @@ class ProductPhotosTableSeeder extends Seeder
      */
     private function createPhotosDir(Product $product)
     {
-        $path = ProductPhoto::phothosPath($product->id);
+        $path = ProductPhoto::photosPath($product->id);
         \File::makeDirectory($path, 0777, true);
     }
 

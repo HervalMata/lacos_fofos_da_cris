@@ -19,7 +19,7 @@ class ProductPhoto extends Model
      * @param $productId
      * @return string
      */
-    public static function phothosPath($productId)
+    public static function photosPath($productId)
     {
         $path = self::PRODUCTS_PATH;
         return storage_path("{$path}/{$productId}");
@@ -60,7 +60,7 @@ class ProductPhoto extends Model
         $photos = [];
         /** @var UploadedFile $file */
         foreach ($files as $file) {
-            $photos[]->self::create([
+            $photos[] = self::create([
                 'file_name' => $file->hashName(),
                 'product_id' => $productId
             ]);

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Collection;
 use LacosFofos\Http\Controllers\Controller;
+use LacosFofos\Http\Requests\ProductPhotoRequest;
 use LacosFofos\Http\Resources\ProductPhotoCollection;
 use LacosFofos\Http\Resources\ProductPhotoResource;
 use LacosFofos\Models\Product;
@@ -18,7 +19,7 @@ class ProductPhotoController extends Controller
      * Display a listing of the resource.
      *
      * @param Product $product
-     * @return AnonymousResourceCollection
+     * @return ProductPhotoCollection
      */
     public function index(Product $product)
     {
@@ -29,12 +30,14 @@ class ProductPhotoController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
-     * @return Collection
+     * @param ProductPhotoRequest $request
+     * @param Product $product
+     * @return ProductPhotoCollection
      */
-    public function store(Request $request, Product $product)
+    public function store(ProductPhotoRequest $request, Product $product)
     {
-        return ProductPhoto::createWithPhotosFiles($product->id, $request->photos);
+        $photos = ProductPhoto::createWithPhotosFiles($product->id, $request->photos);
+        return new ProductPhotoCollection($photos, $product);
     }
 
     /**
@@ -42,7 +45,7 @@ class ProductPhotoController extends Controller
      *
      * @param Product $product
      * @param ProductPhoto $photo
-     * @return ProductPhoto
+     * @return ProductPhotoCollection
      */
     public function show(Product $product, ProductPhoto $photo)
     {

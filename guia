@@ -137,3 +137,6 @@ Fotos dos produtos
 
 43 - Construindo upload de imagens
 
+44 - Testando upload de imagens
+       - php artisan make:request ProductPhotoRequest
+
