@@ -141,3 +141,5 @@ Fotos dos produtos
        - php artisan make:request ProductPhotoRequest
 
 45 - Database Transections
+
+46 - Atualizar imagem

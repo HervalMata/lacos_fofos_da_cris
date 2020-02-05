@@ -2,17 +2,13 @@
 
 namespace LacosFofos\Http\Controllers\Api;
 
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use Illuminate\Support\Collection;
 use LacosFofos\Http\Controllers\Controller;
 use LacosFofos\Http\Requests\ProductPhotoRequest;
 use LacosFofos\Http\Resources\ProductPhotoCollection;
 use LacosFofos\Http\Resources\ProductPhotoResource;
 use LacosFofos\Models\Product;
 use LacosFofos\Models\ProductPhoto;
-use Illuminate\Http\Request;
 
 class ProductPhotoController extends Controller
 {
@@ -60,13 +56,17 @@ class ProductPhotoController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param  \LacosFofos\Models\ProductPhoto  $productPhoto
-     * @return \Illuminate\Http\Response
+     * @param ProductPhotoRequest $request
+     * @param Product $product
+     * @param ProductPhoto $photo
+     * @return ProductPhotoResource
+     * @throws \Exception
      */
-    public function update(Request $request, ProductPhoto $productPhoto)
+    public function update(ProductPhotoRequest $request, Product $product, ProductPhoto $photo)
     {
-        //
+        $this->assertProductPhoto($photo, $product);
+        $photo = $photo->updateWithPhoto($request->photo);
+        return new ProductPhotoResource($photo);
     }
 
     /**
@@ -78,5 +78,16 @@ class ProductPhotoController extends Controller
     public function destroy(ProductPhoto $productPhoto)
     {
         //
+    }
+
+    /**
+     * @param ProductPhoto $photo
+     * @param Product $product
+     */
+    private function assertProductPhoto(ProductPhoto $photo, Product $product)
+    {
+        if ($photo->product_id != $product->id) {
+            abort(404);
+        }
     }
 }

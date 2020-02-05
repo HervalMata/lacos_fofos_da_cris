@@ -47,6 +47,27 @@ class ProductPhoto extends Model
     }
 
     /**
+     * @param UploadedFile $file
+     * @return ProductPhoto
+     * @throws \Exception
+     */
+    public function updateWithPhoto(UploadedFile $file) : ProductPhoto
+    {
+        try {
+            self::uploadFiles($this->product_id, [$file]);
+            \DB::beginTransaction();
+            $this->deletePhoto($this->file_name);
+            $this->save();
+            \DB::commit();
+            return $this;
+        } catch (\Exception $e) {
+            self::deleteFiles($this->product_id, [$file]);
+            \DB::rollBack();
+            throw $e;
+        }
+    }
+
+    /**
      * @param $productId
      * @param array $files
      */
@@ -118,5 +139,14 @@ class ProductPhoto extends Model
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+
+    /**
+     * @param $file_name
+     */
+    private function deletePhoto($file_name)
+    {
+        $dir = self::photosDir($this->product_id);
+        \Storage::disk('public')->delete("{$dir}/{$this->file_name}");
     }
 }
