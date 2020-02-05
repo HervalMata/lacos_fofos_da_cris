@@ -3,6 +3,7 @@
 namespace LacosFofos\Http\Controllers\Api;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Collection;
 use LacosFofos\Http\Controllers\Controller;
@@ -32,12 +33,13 @@ class ProductPhotoController extends Controller
      *
      * @param ProductPhotoRequest $request
      * @param Product $product
-     * @return ProductPhotoCollection
+     * @return JsonResponse
+     * @throws \Exception
      */
     public function store(ProductPhotoRequest $request, Product $product)
     {
         $photos = ProductPhoto::createWithPhotosFiles($product->id, $request->photos);
-        return new ProductPhotoCollection($photos, $product);
+        return response()->json(new ProductPhotoCollection($photos, $product), 201);
     }
 
     /**
