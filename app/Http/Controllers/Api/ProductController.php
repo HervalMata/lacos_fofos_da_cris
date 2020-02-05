@@ -81,6 +81,16 @@ class ProductController extends Controller
     }
 
     /**
+     * @param Product $product
+     * @return JsonResponse
+     */
+    public function restore(Product $product)
+    {
+        $product->restore();
+        return response()->json([], 204);
+    }
+
+    /**
      * @param Request $request
      * @param Builder $query
      * @return Builder
