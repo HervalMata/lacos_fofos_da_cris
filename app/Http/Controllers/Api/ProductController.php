@@ -2,6 +2,7 @@
 
 namespace LacosFofos\Http\Controllers\Api;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
@@ -18,9 +19,11 @@ class ProductController extends Controller
      *
      * @return AnonymousResourceCollection
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = ProductResource::collection(Product::paginate(10));
+        $query = Product::query();
+        $query = $this->onlyTrashedIfRequested($request, $query);
+        $products = ProductResource::collection($query->paginate(10));
         return $products;
     }
 
@@ -75,5 +78,18 @@ class ProductController extends Controller
         $product->delete();
 
         return response()->json([], 204);
+    }
+
+    /**
+     * @param Request $request
+     * @param Builder $query
+     * @return Builder
+     */
+    private function onlyTrashedIfRequested(Request $request, Builder $query)
+    {
+        if ($request->get('trashed') == 1) {
+            $query = $query->onlyTrashed();
+        }
+        return $query;
     }
 }

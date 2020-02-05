@@ -150,3 +150,5 @@ Exclusão lógica
         - php artisan migrate
 
 48 - Exclusão da imagem
+
+49 - Integrando exclusão lógica
