@@ -168,3 +168,7 @@ Administração de usuários
 
 54 - Criando um usuário
         - php artisan make:request UserRequest
+
+55 - Regra para unicidade de usuários
+
+
