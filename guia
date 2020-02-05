@@ -135,3 +135,5 @@ Fotos dos produtos
 42 - Resource Collection
        - php artisan make:resource ProductPhotoCollection --collection
 
+43 - Construindo upload de imagens
+

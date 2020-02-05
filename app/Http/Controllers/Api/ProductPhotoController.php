@@ -4,6 +4,7 @@ namespace LacosFofos\Http\Controllers\Api;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Collection;
 use LacosFofos\Http\Controllers\Controller;
 use LacosFofos\Http\Resources\ProductPhotoCollection;
 use LacosFofos\Http\Resources\ProductPhotoResource;
@@ -28,12 +29,12 @@ class ProductPhotoController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Collection
      */
-    public function store(Request $request)
+    public function store(Request $request, Product $product)
     {
-        //
+        return ProductPhoto::createWithPhotosFiles($product->id, $request->photos);
     }
 
     /**
@@ -54,7 +55,7 @@ class ProductPhotoController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  \LacosFofos\Models\ProductPhoto  $productPhoto
      * @return \Illuminate\Http\Response
      */

@@ -1,9 +1,11 @@
 <?php
-
+declare(strict_types=1);
 namespace LacosFofos\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Collection;
 
 class ProductPhoto extends Model
 {
@@ -24,14 +26,45 @@ class ProductPhoto extends Model
     }
 
     /**
+     * @param int $productId
+     * @param array $files
+     * @return Collection
+     */
+    public static function createWithPhotosFiles(int $productId, array $files) : Collection
+    {
+        self::uploadFiles($productId, $files);
+        $photos = self::createPhotosModels($productId, $files);
+        return new Collection($photos);
+    }
+
+    /**
      * @param $productId
      * @param array $files
      */
-    public static function uploadFiles($productId, array $files)
+    public static function uploadFiles(int $productId, array $files)
     {
         $dir = self::photosDir($productId);
+        /** @var UploadedFile $file */
         foreach ($files as $file) {
             $file->store($dir, ['disk' => 'public']);
+        }
+    }
+
+    /**
+     * @param int $productId
+     * @param array $files
+     * @return array
+     */
+    private static function createPhotosModels(int $productId, array $files) : array
+    {
+        $photos = [];
+        /** @var UploadedFile $file */
+        foreach ($files as $file) {
+            $photos[]->self::create([
+                'file_name' => $file->hashName(),
+                'product_id' => $productId
+            ]);
+            return $photos;
         }
     }
 
