@@ -5,6 +5,7 @@ namespace LacosFofos\Http\Controllers\Api;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use LacosFofos\Http\Controllers\Controller;
+use LacosFofos\Http\Resources\ProductPhotoCollection;
 use LacosFofos\Http\Resources\ProductPhotoResource;
 use LacosFofos\Models\Product;
 use LacosFofos\Models\ProductPhoto;
@@ -21,7 +22,7 @@ class ProductPhotoController extends Controller
     public function index(Product $product)
     {
         $photos = $product->photos;
-        return ProductPhotoResource::collection($photos);
+        return new ProductPhotoCollection($photos, $product);
     }
 
     /**
@@ -47,7 +48,7 @@ class ProductPhotoController extends Controller
         if ($photo->product_id != $product->id) {
             abort(404);
         }
-        return $photo;
+        return new ProductPhotoCollection($photo);
     }
 
     /**

@@ -132,4 +132,6 @@ Fotos dos produtos
 41 - Entendendo storage publico e privado
        - php artisan storage:link
 
+42 - Resource Collection
+       - php artisan make:resource ProductPhotoCollection --collection
 
