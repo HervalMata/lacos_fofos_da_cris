@@ -143,3 +143,8 @@ Fotos dos produtos
 45 - Database Transections
 
 46 - Atualizar imagem
+
+Exclusão lógica
+47 - Iniciando com exclusão lógica
+        - php artisan make:migration add_soft_deletes_products_table --table=products
+        - php artisan migrate
