@@ -202,3 +202,5 @@ Administração de usuários
 65 - Pegando usuario logado
 
 66 - Refresh token
+
+67 - Auto refresh token
