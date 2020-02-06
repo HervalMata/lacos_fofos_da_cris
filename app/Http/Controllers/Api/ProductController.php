@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
+use LacosFofos\Common\OnlyTrashed;
 use LacosFofos\Http\Controllers\Controller;
 use LacosFofos\Http\Requests\ProductRequest;
 use LacosFofos\Http\Resources\ProductResource;
@@ -14,6 +15,7 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    use OnlyTrashed;
     /**
      * Display a listing of the resource.
      *
@@ -88,18 +90,5 @@ class ProductController extends Controller
     {
         $product->restore();
         return response()->json([], 204);
-    }
-
-    /**
-     * @param Request $request
-     * @param Builder $query
-     * @return Builder
-     */
-    private function onlyTrashedIfRequested(Request $request, Builder $query)
-    {
-        if ($request->get('trashed') == 1) {
-            $query = $query->onlyTrashed();
-        }
-        return $query;
     }
 }

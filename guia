@@ -173,4 +173,8 @@ Administração de usuários
 
 56 - Atualizando usuários
 
+57 - Removendo usuarios
+         - php artisan make:migration add_soft_deletes_users_table --table=users
+         - php artisan migrate
+
 

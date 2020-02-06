@@ -4,13 +4,17 @@ namespace LacosFofos\Providers;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use LacosFofos\Common\OnlyTrashed;
 use LacosFofos\Models\Category;
 use LacosFofos\Models\Product;
+use LacosFofos\Models\User;
 
 class RouteServiceProvider extends ServiceProvider
 {
+    use OnlyTrashed;
     /**
      * This namespace is applied to your controller routes.
      *
@@ -40,22 +44,19 @@ class RouteServiceProvider extends ServiceProvider
         Route::bind('product', function ($value) {
             /** @var Collection $collection */
             $query = Product::query();
-            $query = $this->onlyTrashedIfRequested($query);
+            $request = app(Request::class);
+            $query = $this->onlyTrashedIfRequested($request, $query);
             $collection = $query->whereId($value)->orWhere('slug', $value)->get();
             return $collection->first();
         });
-    }
 
-    /**
-     * @param Builder $query
-     * @return Builder
-     */
-    private function onlyTrashedIfRequested(Builder $query)
-    {
-        if (\Request::get('trashed') == 1) {
-            $query = $query->onlyTrashed();
-        }
-        return $query;
+        Route::bind('user', function ($value) {
+            /** @var Collection $collection */
+            $query = User::query();
+            $request = app(Request::class);
+            $query = $this->onlyTrashedIfRequested($request, $query);
+            return $query->find($value);
+        });
     }
 
     /**

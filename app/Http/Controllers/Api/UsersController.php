@@ -2,8 +2,10 @@
 
 namespace LacosFofos\Http\Controllers\Api;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use LacosFofos\Common\OnlyTrashed;
 use LacosFofos\Http\Controllers\Controller;
 use LacosFofos\Http\Requests\UserRequest;
 use LacosFofos\Http\Resources\UserResource;
@@ -11,14 +13,17 @@ use LacosFofos\Models\User;
 
 class UsersController extends Controller
 {
+    use OnlyTrashed;
     /**
      * Display a listing of the resource.
      *
      * @return AnonymousResourceCollection
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = UserResource::collection(User::paginate(10));
+        $query = User::query();
+        $query = $this->onlyTrashedIfRequested($request, $query);
+        $users = UserResource::collection($query->paginate(10));
         return $users;
     }
 
@@ -62,11 +67,23 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param User $user
+     * @return JsonResponse
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return response()->json([], 204);
+    }
+
+    /**
+     * @param User $user
+     * @return JsonResponse
+     */
+    public function restore(User $user)
+    {
+        $user->restore();
+        return response()->json([], 204);
     }
 }
