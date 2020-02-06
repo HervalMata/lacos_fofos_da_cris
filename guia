@@ -214,3 +214,6 @@ Aplicação Web Angular
 69 - Integração do Bootstrap
           - npm install bootstrap --save
           - npm install jquery popper.js --save
+
+70 - Criado componente de Login
+          - ng g c login
