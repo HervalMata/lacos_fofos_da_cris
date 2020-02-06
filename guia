@@ -200,3 +200,5 @@ Administração de usuários
 64 - Logout - Invalidando tokens
 
 65 - Pegando usuario logado
+
+66 - Refresh token
