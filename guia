@@ -210,3 +210,7 @@ Aplicação Web Angular
           - npm install -g @angular/cli@6
           - ng new angular-app
           - renomear para _angular-app
+
+69 - Integração do Bootstrap
+          - npm install bootstrap --save
+          - npm install jquery popper.js --save
