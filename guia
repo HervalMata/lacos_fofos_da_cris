@@ -198,3 +198,5 @@ Administração de usuários
 63 - Protegendo a API
 
 64 - Logout - Invalidando tokens
+
+65 - Pegando usuario logado
