@@ -194,3 +194,5 @@ Administração de usuários
 
 62 - Gerando token JWT
          - php artisan make:controller Api/AuthController
+
+63 - Protegendo a API
