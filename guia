@@ -219,3 +219,5 @@ Aplicação Web Angular
           - ng g c login
 
 71 - Criando a primeira requisição ajax para a API
+
+72 - Configuração dos Cors

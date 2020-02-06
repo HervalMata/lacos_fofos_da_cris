@@ -3,6 +3,7 @@
 namespace LacosFofos\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use LacosFofos\Http\Middleware\CorsMiddleware;
 
 class Kernel extends HttpKernel
 {
@@ -19,6 +20,7 @@ class Kernel extends HttpKernel
         \LacosFofos\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \LacosFofos\Http\Middleware\TrustProxies::class,
+        CorsMiddleware::class
     ];
 
     /**
