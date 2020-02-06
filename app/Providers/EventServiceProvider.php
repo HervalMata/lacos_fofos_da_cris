@@ -13,8 +13,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'LacosFofos\Events\Event' => [
-            'LacosFofos\Listeners\EventListener',
+        'LacosFofos\Events\UserCreatedEvent' => [
+            'LacosFofos\Listeners\SendMailToDefinePassword',
         ],
     ];
 

@@ -177,4 +177,7 @@ Administração de usuários
          - php artisan make:migration add_soft_deletes_users_table --table=users
          - php artisan migrate
 
+58 - Criando eventos personalizados
+         - php artisan event:generate
+
 
