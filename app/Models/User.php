@@ -5,8 +5,9 @@ namespace LacosFofos\Models;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
     use SoftDeletes;
@@ -43,4 +44,22 @@ class User extends Authenticatable
     }
 
 
+    /**
+     * @inheritDoc
+     */
+    public function getJWTIdentifier()
+    {
+        $this->id;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getJWTCustomClaims()
+    {
+        return [
+            'email' => $this->email,
+            'name' => $this->name
+        ];
+    }
 }

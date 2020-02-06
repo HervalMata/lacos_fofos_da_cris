@@ -190,3 +190,4 @@ Administração de usuários
          - php artisan jwt:secret
          - php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
 
+61 - Sujeito do token
