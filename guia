@@ -224,3 +224,5 @@ Aplicação Web Angular
 
 73 - Iniciando com SPA
           - ng g c category/category-list
+
+74 - Listando categorias no componentes
