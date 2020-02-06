@@ -1,3 +1,11 @@
-<p>
-  login works!
-</p>
+<form class="form-signin" (submit)="submit()">
+  <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+  <h1 class="h3 mb-3 font-weight-normal">Laços Fofos</h1>
+  <label for="email" class="sr-only">Email</label>
+  <input type="email" id="email" name="email" class="form-control" placeholder="Digite seu email" required autofocus [(ngModel)]="credentials.email">
+  <label for="password" class="sr-only">Senha</label>
+  <input type="password" id="password" name="password" class="form-control" placeholder="Digite sua senha" required autofocus [(ngModel)]="credentials.password">
+
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+  {{credentials | json}}
+</form>

@@ -217,3 +217,5 @@ Aplicação Web Angular
 
 70 - Criado componente de Login
           - ng g c login
+
+71 - Criando a primeira requisição ajax para a API
