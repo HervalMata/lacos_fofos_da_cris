@@ -204,3 +204,9 @@ Administração de usuários
 66 - Refresh token
 
 67 - Auto refresh token
+
+Aplicação Web Angular
+68 - Gerando aplicação angular
+          - npm install -g @angular/cli@6
+          - ng new angular-app
+          - renomear para _angular-app
