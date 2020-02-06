@@ -196,3 +196,5 @@ Administração de usuários
          - php artisan make:controller Api/AuthController
 
 63 - Protegendo a API
+
+64 - Logout - Invalidando tokens
