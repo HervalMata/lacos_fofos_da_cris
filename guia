@@ -191,3 +191,6 @@ Administração de usuários
          - php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
 
 61 - Sujeito do token
+
+62 - Gerando token JWT
+         - php artisan make:controller Api/AuthController
