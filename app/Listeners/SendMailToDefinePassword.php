@@ -2,6 +2,7 @@
 
 namespace LacosFofos\Listeners;
 
+use Illuminate\Support\Facades\Notification;
 use LacosFofos\Events\UserCreatedEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -26,6 +27,9 @@ class SendMailToDefinePassword
      */
     public function handle(UserCreatedEvent $event)
     {
-        //
+        $user = $event->getUser();
+        $token = \Password::broker()->createToken($user);
+        $user->sendPasswordResetNotification($token);
+        //$user->notify(new Notification($token));
     }
 }

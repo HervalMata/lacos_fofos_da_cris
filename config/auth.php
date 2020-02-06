@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => LacosFofos\User::class,
+            'model' => LacosFofos\Models\User::class,
         ],
 
         // 'users' => [

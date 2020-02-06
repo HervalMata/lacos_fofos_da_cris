@@ -6,6 +6,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use LacosFofos\Common\OnlyTrashed;
+use LacosFofos\Events\UserCreatedEvent;
 use LacosFofos\Http\Controllers\Controller;
 use LacosFofos\Http\Requests\UserRequest;
 use LacosFofos\Http\Resources\UserResource;
@@ -36,6 +37,7 @@ class UsersController extends Controller
     public function store(UserRequest $request)
     {
         $user = User::create($request->all());
+        event(new UserCreatedEvent($user));
         return new UserResource($user);
     }
 

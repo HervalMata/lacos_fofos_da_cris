@@ -180,4 +180,9 @@ Administração de usuários
 58 - Criando eventos personalizados
          - php artisan event:generate
 
+59 - Resetando senha
+         - pha artisan make:notification MyResetPassword
+         - php artisan make:auth
+         - php artisan vendor:publish --tag=laravel-notifications
+
 
