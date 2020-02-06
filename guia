@@ -221,3 +221,6 @@ Aplicação Web Angular
 71 - Criando a primeira requisição ajax para a API
 
 72 - Configuração dos Cors
+
+73 - Iniciando com SPA
+          - ng g c category/category-list
