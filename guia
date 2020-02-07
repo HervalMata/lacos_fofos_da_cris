@@ -230,3 +230,6 @@ Aplicação Web Angular
 75 - Criando events personalizados para o componete de alert
            -npm install @fortawesome/fontawesome-free-webfonts
            -ng g c bootstrap/alert-error
+
+76 - Criando cadastro de categorias
+           - ng g c bootstrap/modal

@@ -2,12 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './pages/login/login.component';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
-import { CategoryListComponent } from './category/category-list/category-list.component';
+import { CategoryListComponent } from './pages/category/category-list/category-list.component';
 import {RouterModule, Routes} from "@angular/router";
 import { AlertErrorComponent } from './bootstrap/alert-error/alert-error.component';
+import { ModalComponent } from './bootstrap/modal/modal.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -20,7 +21,8 @@ const routes: Routes = [
     AppComponent,
     LoginComponent,
     CategoryListComponent,
-    AlertErrorComponent
+    AlertErrorComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
