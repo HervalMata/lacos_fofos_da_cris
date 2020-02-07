@@ -233,3 +233,7 @@ Aplicação Web Angular
 
 76 - Criando cadastro de categorias
            - ng g c bootstrap/modal
+
+77 - Criado Component de Edição de Categorias
+           - ng g c pages/category/category-new-modal
+           - ng g c pages/category/category-edit-modal

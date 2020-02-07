@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {ModalComponent} from "../../../bootstrap/modal/modal.component";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {CategoryNewModalComponent} from "../category-new-modal/category-new-modal.component";
+import {CategoryEditModalComponent} from "../category-edit-modal/category-edit-modal.component";
 
 declare let $;
 
@@ -17,13 +18,18 @@ export class CategoryListComponent implements OnInit {
     name: ''
   };
 
-  @ViewChild(ModalComponent)
-  modal: ModalComponent;
+  @ViewChild(CategoryNewModalComponent)
+  categoryNewModal: CategoryNewModalComponent;
+
+  @ViewChild(CategoryEditModalComponent)
+  categoryEditModal: CategoryEditModalComponent;
+
+  categoryId: number;
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this,this.getCategories();
+    this.getCategories();
   }
 
   getCategories() {
@@ -36,24 +42,21 @@ export class CategoryListComponent implements OnInit {
     }).subscribe((response) => this.categories = response.data);
   }
 
-  submit() {
-    const token  = window.localStorage.getItem('token');
-    this.http.post
-    ('http://localhost:8000/api/categories', this.categories,{
-      headers: {
-        'Authorization' : `Bearer ${token}`
-      }
-    }).subscribe((category) => {
-      console.log(category);
-      this.getCategories();
-      $('#exampleModel').modal('hide');
-    });
+  showModalInsert() {
+    this.categoryNewModal.showModal();
   }
 
-  showModal() {
-    this.modal.show();
-    setTimeout(() => {
-      this.modal.hide();
-    }, 3000)
+  showModalEdit(categoryId: number) {
+    this.categoryId = categoryId;
+    this.categoryEditModal.showModal();
+  }
+
+  onInsertSuccess($event: any) {
+    console.log($event);
+    this.getCategories();
+  }
+
+  onInsertError($event: HttpErrorResponse) {
+    console.log($event);
   }
 }

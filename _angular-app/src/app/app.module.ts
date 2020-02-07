@@ -9,6 +9,8 @@ import { CategoryListComponent } from './pages/category/category-list/category-l
 import {RouterModule, Routes} from "@angular/router";
 import { AlertErrorComponent } from './bootstrap/alert-error/alert-error.component';
 import { ModalComponent } from './bootstrap/modal/modal.component';
+import {CategoryNewModalComponent} from "./pages/category/category-new-modal/category-new-modal.component";
+import {CategoryEditModalComponent} from "./pages/category/category-edit-modal/category-edit-modal.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -22,7 +24,9 @@ const routes: Routes = [
     LoginComponent,
     CategoryListComponent,
     AlertErrorComponent,
-    ModalComponent
+    ModalComponent,
+    CategoryNewModalComponent,
+    CategoryEditModalComponent
   ],
   imports: [
     BrowserModule,
