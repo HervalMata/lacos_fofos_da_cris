@@ -226,3 +226,7 @@ Aplicação Web Angular
           - ng g c category/category-list
 
 74 - Listando categorias no componentes
+
+75 - Criando events personalizados para o componete de alert
+           -npm install @fortawesome/fontawesome-free-webfonts
+           -ng g c bootstrap/alert-error
