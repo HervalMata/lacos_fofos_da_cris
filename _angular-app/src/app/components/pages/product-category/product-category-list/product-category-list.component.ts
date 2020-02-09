@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Product, ProductCategory} from "../../../../model";
+import {Category, Product, ProductCategory} from "../../../../model";
 import {ActivatedRoute} from "@angular/router";
 import {ProductHttpService} from "../../../../services/http/product-http.service";
 import {ProductCategoryHttpService} from "../../../../services/http/product-category-http.service";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'product-category-list',
@@ -18,7 +19,7 @@ export class ProductCategoryListComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private productHttp: ProductHttpService,
-    private productCategoryHttp: ProductCategoryHttpService
+    private productCategoryHttp: ProductCategoryHttpService,
   ) { }
 
   ngOnInit() {
@@ -40,5 +41,13 @@ export class ProductCategoryListComponent implements OnInit {
         this.productCategory = productCategory;
         console.log(this.productCategory);
       })
+  }
+
+  onInsertSuccess($event: any) {
+    this.getProductCategory();
+  }
+
+  onInsertError($event: HttpErrorResponse) {
+    console.log($event);
   }
 }

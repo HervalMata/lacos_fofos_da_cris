@@ -17,10 +17,10 @@ class CategoryController extends Controller
      *
      * @return AnonymousResourceCollection
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categories = CategoryResource::collection(Category::paginate(5));
-        return $categories;
+        $categories = $request->has('all') ? Category::all() : Category::paginate(5);
+        return CategoryResource::collection($categories);
     }
 
     /**

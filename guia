@@ -279,3 +279,6 @@ Aplicação Web Angular
 87 - Listando categorias dos produtos
               - ng g c components/pages/product-category/product-category-list
               - ng g s services/http/product-category-http
+
+88 - Concluindo categorias do produtos
+              - ng g c components/pages/product-category/product-category-new-modal

@@ -4,7 +4,6 @@ import {CategoryEditModalComponent} from "../category-edit-modal/category-edit-m
 import {CategoryDeleteModalComponent} from "../category-delete-modal/category-delete-modal.component";
 import {Category} from "../../../../model";
 import {CategoryHttpService} from "../../../../services/http/category-http.service";
-import {NotifyMessageService} from "../../../../services/notify-message.service";
 import {CategoryInsertService} from "./category-insert.service";
 import {CategoryEditService} from "./category-edit.service";
 import {CategoryDeleteService} from "./category-delete.service";
@@ -25,7 +24,7 @@ export class CategoryListComponent implements OnInit {
     page: 1,
     totalItems: 0,
     itemsPerPage: 10
-  }
+  };
 
   category = {
     name: ''
@@ -58,7 +57,7 @@ export class CategoryListComponent implements OnInit {
   }
 
   getCategories() {
-    this.categoryHttp.list(this.pagination.page)
+    this.categoryHttp.list({page: this.pagination.page})
       .subscribe((response) => {
         this.categories = response.data;
         this.pagination.totalItems = response.meta.total;

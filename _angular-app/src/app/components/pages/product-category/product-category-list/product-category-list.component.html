@@ -4,7 +4,8 @@
     <thead>
     <tr>
       <td colspan="5">
-        <button class="btn btn-primary">?</button>
+        <product-category-new-modal [productId]="productId" [productCategory]="productCategory"
+                   (onSuccess)="onInsertSuccess($event)"  (onError)="onInsertError($event)"></product-category-new-modal>
       </td>
     </tr>
     <tr>
