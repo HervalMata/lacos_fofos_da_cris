@@ -237,3 +237,5 @@ Aplicação Web Angular
 77 - Criado Component de Edição de Categorias
            - ng g c pages/category/category-new-modal
            - ng g c pages/category/category-edit-modal
+
+78 - Criando componente para atualizar categorias

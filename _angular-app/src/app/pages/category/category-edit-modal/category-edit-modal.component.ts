@@ -1,6 +1,6 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {ModalComponent} from "../../../bootstrap/modal/modal.component";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'category-edit-modal',
@@ -10,7 +10,8 @@ import {HttpClient} from "@angular/common/http";
 export class CategoryEditModalComponent implements OnInit {
 
   category = {
-    name: ''
+    name: '',
+    active: true
   };
 
   @Input()
@@ -19,6 +20,11 @@ export class CategoryEditModalComponent implements OnInit {
   @ViewChild(ModalComponent)
   modal: ModalComponent;
 
+  @Output()
+  onSuccess: EventEmitter<any> = new EventEmitter<any>();
+  @Output()
+  onError: EventEmitter<HttpErrorResponse> = new EventEmitter<HttpErrorResponse>();
+
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
@@ -26,14 +32,30 @@ export class CategoryEditModalComponent implements OnInit {
 
   @Input()
   set categoryId(value) {
-    const token  = window.localStorage.getItem('token');
     this._categoryId = value;
-    this.http.get<any>
-    (`http://localhost:8000/api/categories/${value}`,{
+    if (this._categoryId) {
+      const token  = window.localStorage.getItem('token');
+      this.http.get<any>
+      (`http://localhost:8000/api/categories/${value}`,{
+        headers: {
+          'Authorization' : `Bearer ${token}`
+        }
+      }).subscribe((response) => this.category = response.data);
+    }
+  }
+
+  submit() {
+    const token  = window.localStorage.getItem('token');
+    this.http.post
+    (`http://localhost:8000/api/categories${this._categoryId}`, this.category,{
       headers: {
         'Authorization' : `Bearer ${token}`
       }
-    }).subscribe((response) => this.category = response.data);
+    }).subscribe((category) => {
+      console.log(category);
+      this.onSuccess.emit(category);
+      this.modal.hide();
+    }, error => this.onError.emit(error));
   }
 
   showModal() {
