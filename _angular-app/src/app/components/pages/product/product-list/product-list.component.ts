@@ -7,6 +7,8 @@ import {ProductHttpService} from "../../../../services/http/product-http.service
 import {ProductInsertService} from "../../product/product-list/product-insert.service";
 import {ProductEditService} from "../../product/product-list/product-edit.service";
 import {ProductDeleteService} from "../../product/product-list/product-delete.service";
+import {ProductViewModalComponent} from "../product-view-modal/product-view-modal.component";
+import {ProductViewService} from "./product-view.service";
 
 @Component({
   selector: 'product-list',
@@ -36,6 +38,9 @@ export class ProductListComponent implements OnInit {
   @ViewChild(ProductDeleteModalComponent)
   productDeleteModal: ProductDeleteModalComponent;
 
+  @ViewChild(ProductViewModalComponent)
+  productViewModal: ProductViewModalComponent;
+
   productId: number;
 
   constructor(
@@ -43,10 +48,12 @@ export class ProductListComponent implements OnInit {
     protected productInsertService: ProductInsertService,
     protected productEditService: ProductEditService,
     protected productDeleteService: ProductDeleteService,
+    protected productViewService: ProductViewService
   ) {
     this.productInsertService.productListComponent = this;
     this.productEditService.productListComponent = this;
     this.productDeleteService.productListComponent = this;
+    this.productViewService.productListComponent = this;
   }
 
   ngOnInit() {

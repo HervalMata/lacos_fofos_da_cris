@@ -268,3 +268,9 @@ Aplicação Web Angular
              - ng g s components/pages/product/product-list/product-insert
              - ng g s components/pages/product/product-list/product-edit
              - ng g s components/pages/product/product-list/product-delete
+
+85 - Componente de cadastro e edicao de produtos
+             - ng g p pipes/number-format-br
+             - ng g c components/pages/product/product-view-modal
+             - ng g s components/pages/product/product-list/product-view
+
