@@ -245,3 +245,7 @@ Aplicação Web Angular
 
 80 - Criando metodos AJAX
             - ng g s services/http/category-http
+
+81 - Implementado componente de notificações
+            -npm install pnotify@^4.0.0-alpha.4
+            - ng g s services/notify-message
