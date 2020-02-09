@@ -257,3 +257,14 @@ Aplicação Web Angular
 
 83 - Adicionada barra de progresso ao realizar requisições AJAX
             - npm install github.HubSpot/pace#v1.0.2
+            - npm i ngx-pagination@3.1.1 --save
+
+84 - Componente de listagem de produtos
+             - ng g c components/pages/product/product-list
+             - ng g c components/pages/product/product-edit-modal
+             - ng g c components/pages/product/product-new-modal
+             - ng g c components/pages/product/product-delete-modal
+             - ng g s services/http/product-http
+             - ng g s components/pages/product/product-list/product-insert
+             - ng g s components/pages/product/product-list/product-edit
+             - ng g s components/pages/product/product-list/product-delete
