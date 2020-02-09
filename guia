@@ -249,3 +249,8 @@ Aplicação Web Angular
 81 - Implementado componente de notificações
             -npm install pnotify@^4.0.0-alpha.4
             - ng g s services/notify-message
+
+82 - Fragmentação do componente de listagem
+            - ng g s components/pages/category/category-list/category-delete
+            - ng g s components/pages/category/category-list/category-insert
+            - ng g s components/pages/category/category-list/category-edit
