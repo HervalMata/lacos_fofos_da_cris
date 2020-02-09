@@ -274,3 +274,4 @@ Aplicação Web Angular
              - ng g c components/pages/product/product-view-modal
              - ng g s components/pages/product/product-list/product-view
 
+86 - Criando interface para métodos comuns HTTP
