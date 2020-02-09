@@ -21,10 +21,16 @@ import { NumberFormatBrPipe } from './pipes/number-format-br.pipe';
 import { ProductViewModalComponent } from './components/pages/product/product-view-modal/product-view-modal.component';
 import { ProductCategoryListComponent } from './components/pages/product-category/product-category-list/product-category-list.component';
 import { ProductCategoryNewModalComponent } from './components/pages/product-category/product-category-new-modal/product-category-new-modal.component';
+import { UserListComponent } from './components/pages/user/user-list/user-list.component';
+import { UserEditModalComponent } from './components/pages/user/user-edit-modal/user-edit-modal.component';
+import { UserNewModalComponent } from './components/pages/user/user-new-modal/user-new-modal.component';
+import { UserDeleteModalComponent } from './components/pages/user/user-delete-modal/user-delete-modal.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'categories/list', component: CategoryListComponent},
+  { path: 'users/list', component: UserListComponent},
+  { path: 'products/:product/categories/list', component: ProductCategoryListComponent},
   { path: 'products/list', component: ProductListComponent},
   { path: '', redirectTo: '/login', pathMatch: 'full'}
 ];
@@ -46,7 +52,11 @@ const routes: Routes = [
     NumberFormatBrPipe,
     ProductViewModalComponent,
     ProductCategoryListComponent,
-    ProductCategoryNewModalComponent
+    ProductCategoryNewModalComponent,
+    UserListComponent,
+    UserEditModalComponent,
+    UserNewModalComponent,
+    UserDeleteModalComponent
   ],
   imports: [
     BrowserModule,
