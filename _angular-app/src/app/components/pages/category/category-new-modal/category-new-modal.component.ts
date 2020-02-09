@@ -1,6 +1,8 @@
 import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {ModalComponent} from "../../../bootstrap/modal/modal.component";
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import { HttpErrorResponse} from "@angular/common/http";
+import {Category} from "../../../../model";
+import {CategoryHttpService} from "../../../../services/http/category-http.service";
 
 @Component({
   selector: 'category-new-modal',
@@ -9,7 +11,7 @@ import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 })
 export class CategoryNewModalComponent implements OnInit {
 
-  category = {
+  category: Category = {
     name: '',
     active: true
   };
@@ -22,19 +24,14 @@ export class CategoryNewModalComponent implements OnInit {
   @Output()
   onError: EventEmitter<HttpErrorResponse> = new EventEmitter<HttpErrorResponse>();
 
-  constructor(private http: HttpClient) { }
+  constructor(private categoryHttp: CategoryHttpService) { }
 
   ngOnInit() {
   }
 
   submit() {
-    const token  = window.localStorage.getItem('token');
-    this.http.post
-    ('http://localhost:8000/api/categories', this.category,{
-      headers: {
-        'Authorization' : `Bearer ${token}`
-      }
-    }).subscribe((category) => {
+    this.categoryHttp.create(this.category)
+      .subscribe((category) => {
       console.log(category);
       this.onSuccess.emit(category);
       this.modal.hide();

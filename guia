@@ -242,3 +242,6 @@ Aplicação Web Angular
 
 79 - Criando componente para exclusão de categorias
             - ng g c components/pages/category/category-delete-modal
+
+80 - Criando metodos AJAX
+            - ng g s services/http/category-http
