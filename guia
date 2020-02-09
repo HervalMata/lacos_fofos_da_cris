@@ -254,3 +254,6 @@ Aplicação Web Angular
             - ng g s components/pages/category/category-list/category-delete
             - ng g s components/pages/category/category-list/category-insert
             - ng g s components/pages/category/category-list/category-edit
+
+83 - Adicionada barra de progresso ao realizar requisições AJAX
+            - npm install github.HubSpot/pace#v1.0.2

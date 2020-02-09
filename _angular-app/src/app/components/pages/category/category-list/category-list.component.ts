@@ -21,6 +21,12 @@ export class CategoryListComponent implements OnInit {
 
   categories: Array<Category> = [];
 
+  pagination = {
+    page: 1,
+    totalItems: 0,
+    itemsPerPage: 10
+  }
+
   category = {
     name: ''
   };
@@ -38,7 +44,6 @@ export class CategoryListComponent implements OnInit {
 
   constructor(
     public categoryHttp: CategoryHttpService,
-    private notifyMessage: NotifyMessageService,
     protected categoryInsertService: CategoryInsertService,
     protected categoryEditService: CategoryEditService,
     protected categoryDeleteService: CategoryDeleteService,
@@ -53,7 +58,16 @@ export class CategoryListComponent implements OnInit {
   }
 
   getCategories() {
-    this.categoryHttp.list()
-      .subscribe((response) => this.categories = response.data);
+    this.categoryHttp.list(this.pagination.page)
+      .subscribe((response) => {
+        this.categories = response.data;
+        this.pagination.totalItems = response.meta.total;
+        this.pagination.totalItems = response.meta.per_page;
+      });
+  }
+
+  pageChanged(page) {
+    this.pagination.page = page;
+    this.getCategories();
   }
 }
