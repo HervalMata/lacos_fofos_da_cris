@@ -239,3 +239,6 @@ Aplicação Web Angular
            - ng g c pages/category/category-edit-modal
 
 78 - Criando componente para atualizar categorias
+
+79 - Criando componente para exclusão de categorias
+            - ng g c components/pages/category/category-delete-modal
