@@ -17,6 +17,7 @@ export class SearchParamsBuilder {
       sParams.all = '1';
       delete sParams.page;
     }
+    return sParams;
   }
 }
 

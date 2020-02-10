@@ -65,7 +65,7 @@ export class ProductListComponent implements OnInit {
       .subscribe((response) => {
         this.products = response.data;
         this.pagination.totalItems = response.meta.total;
-        this.pagination.totalItems = response.meta.per_page;
+        this.pagination.itemsPerPage = response.meta.per_page;
       });
   }
 

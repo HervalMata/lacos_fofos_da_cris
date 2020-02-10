@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {SearchParams, SearchParamsBuilder} from "./http-resource";
 import {Observable} from "rxjs/internal/Observable";
@@ -17,15 +17,18 @@ export class UserHttpService {
 
   // @ts-ignore
   list(searchParams: SearchParams) : Observable<{data: Array<User>, meta: any}> {
-    const sParams = new SearchParamsBuilder(searchParams).makeObject();
+    //const sParams = new SearchParamsBuilder(searchParams).makeObject();
+    //const params = new HttpParams({
+    //fromObject: (<any>sParams)
+    //});
     const params = new HttpParams({
-      fromObject: (<any>sParams)
+      fromObject: new SearchParamsBuilder(searchParams).makeObject()
     });
-    return this.http.get<{data: Array<User>, meta: any}>
-    (this.baseUrl,{
+    return this.http.get<{ data: Array<User>, meta: any }>
+    (this.baseUrl, {
       params,
       headers: {
-        'Authorization' : `Bearer ${this.token}`
+        'Authorization': `Bearer ${this.token}`
       }
     });
   }
