@@ -41,7 +41,12 @@ export class ProductEditModalComponent implements OnInit {
     this._productId = value;
     if (this._productId) {
       this.productHttp.get(this._productId)
-        .subscribe((product) => this.product = product);
+        .subscribe((product) => this.product = product,
+          responseError => {
+            if (responseError.status == 401) {
+              this.modal.hide();
+            }
+          });
     }
   }
 

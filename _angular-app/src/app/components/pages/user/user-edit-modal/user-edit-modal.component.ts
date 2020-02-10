@@ -40,7 +40,12 @@ export class UserEditModalComponent implements OnInit {
     this._userId = value;
     if (this._userId) {
       this.userHttp.get(this._userId)
-        .subscribe((user) => this.user = user);
+        .subscribe((user) => this.user = user,
+          responseError => {
+            if (responseError.status == 401) {
+              this.modal.hide();
+            }
+          });
     }
   }
 
