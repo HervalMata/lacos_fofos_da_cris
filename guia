@@ -319,3 +319,5 @@ Aplicação Web Angular
               - ng g s services/refresh-token-interceptor
 
 100 - Testando renovacao de token
+
+101 - Melhoria na renovacao de token
