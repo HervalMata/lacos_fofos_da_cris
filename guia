@@ -311,3 +311,6 @@ Aplicação Web Angular
 96 - Criando o logout
 
 97 - Ativando menu de acordo com a rota
+
+98 - Protegendo paginas internas com o guardiao
+              - ng g g guards/auth
