@@ -300,3 +300,5 @@ Aplicação Web Angular
 
 92 - Instalando angular2-jwt
               - npm i @auth0/angular-jwt@2.0.0 --save
+
+93 - Pegando o nome do usuario autenticado
