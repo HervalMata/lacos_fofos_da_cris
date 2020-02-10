@@ -309,3 +309,5 @@ Aplicação Web Angular
 95 - Verificar se o usuario esta autenticado no angular
 
 96 - Criando o logout
+
+97 - Ativando menu de acordo com a rota
