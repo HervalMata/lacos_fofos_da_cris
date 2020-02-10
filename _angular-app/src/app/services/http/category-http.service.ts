@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs/internal/observable";
 import {Category} from "../../model";
 import {map} from "rxjs/operators";
 import {HttpResource, SearchParams, SearchParamsBuilder} from "./http-resource";
+import {AuthService} from "../auth.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,18 +12,22 @@ import {HttpResource, SearchParams, SearchParamsBuilder} from "./http-resource";
 export class CategoryHttpService implements HttpResource<Category> {
 
   private baseUrl = `http://localhost:8000/api/categories`;
-  private token = window.localStorage.getItem('token');
+  private token = this.authService.getToken();
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService
+  ) {
+  }
 
   // @ts-ignore
-  list(searchParams: SearchParams) : Observable<{data: Array<Category>, meta: any}> {
+  list(searchParams: SearchParams): Observable<{ data: Array<Category>, meta: any }> {
     const sParams = new SearchParamsBuilder(searchParams).makeObject();
     const params = new HttpParams({
       fromObject: (<any>sParams)
     });
-    return this.http.get<{data: Array<Category>, meta: any}>
-    (this.baseUrl,{
+    return this.http.get<{ data: Array<Category>, meta: any }>
+    (this.baseUrl, {
       params,
       headers: {
         'Authorization' : `Bearer ${this.token}`

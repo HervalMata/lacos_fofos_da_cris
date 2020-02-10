@@ -283,7 +283,7 @@ Aplicação Web Angular
 88 - Concluindo categorias do produtos
               - ng g c components/pages/product-category/product-category-new-modal
 
-130 - Criando CRUD de usuarios
+89 - Criando CRUD de usuarios
               - ng g c components/pages/user/user-list
               - ng g c components/pages/user/user-edit-modal
               - ng g c components/pages/user/user-new-modal
@@ -293,5 +293,7 @@ Aplicação Web Angular
               - ng g s components/pages/user/user-list/user-edit
               - ng g s components/pages/user/user-list/user-delete
 
-131 - Criando metodo de login
+90 - Criando metodo de login
               - ng g s services/auth
+
+91 - Atribuindo token ao localstorage
