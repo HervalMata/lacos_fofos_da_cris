@@ -6,7 +6,6 @@ import {LoginComponent} from './components/pages/login/login.component';
 import {FormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {CategoryListComponent} from './components/pages/category/category-list/category-list.component';
-import {RouterModule, Routes} from "@angular/router";
 import {AlertErrorComponent} from './components/bootstrap/alert-error/alert-error.component';
 import {ModalComponent} from './components/bootstrap/modal/modal.component';
 import {CategoryNewModalComponent} from "./components/pages/category/category-new-modal/category-new-modal.component";
@@ -28,17 +27,7 @@ import {UserDeleteModalComponent} from './components/pages/user/user-delete-moda
 import {AuthService} from "./services/auth.service";
 import {JWT_OPTIONS, JwtModule} from "@auth0/angular-jwt";
 import {NavbarComponent} from './components/bootstrap/navbar/navbar.component';
-import {AuthGuard} from "./guards/auth.guard";
 import {RefreshTokenInterceptorService} from "./services/refresh-token-interceptor.service";
-
-const routes: Routes = [
-  {path: 'login', component: LoginComponent},
-  {path: 'categories/list', component: CategoryListComponent, canActivate: [AuthGuard]},
-  {path: 'users/list', component: UserListComponent, canActivate: [AuthGuard]},
-  {path: 'products/:product/categories/list', component: ProductCategoryListComponent, canActivate: [AuthGuard]},
-  {path: 'products/list', component: ProductListComponent, canActivate: [AuthGuard]},
-  {path: '', redirectTo: '/login', pathMatch: 'full'}
-];
 
 function jwtFactory(authService: AuthService) {
   return {
@@ -87,7 +76,7 @@ function jwtFactory(authService: AuthService) {
         deps: [AuthService]
       }
     }),
-    RouterModule.forRoot(routes, {enableTracing: true})
+
   ],
   providers: [
     {

@@ -321,3 +321,6 @@ Aplicação Web Angular
 100 - Testando renovacao de token
 
 101 - Melhoria na renovacao de token
+
+102 - Criando modulo para o roteamento
+             - ng g m app-routing
