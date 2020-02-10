@@ -5,13 +5,14 @@ import {Product} from "../../model";
 import {map} from "rxjs/operators";
 import {HttpResource, SearchParams, SearchParamsBuilder} from "./http-resource";
 import {AuthService} from "../auth.service";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductHttpService implements HttpResource<Product> {
 
-  private baseUrl = `http://localhost:8000/api/products`;
+  private baseUrl = `${environment.api.url}/products`;
   private token = this.authService.getToken();
 
   constructor(

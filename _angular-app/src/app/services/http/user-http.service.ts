@@ -5,13 +5,14 @@ import {Observable} from "rxjs/internal/Observable";
 import {User} from "../../model";
 import {map} from "rxjs/operators";
 import {AuthService} from "../auth.service";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserHttpService {
 
-  private baseUrl = `http://localhost:8000/api/users`;
+  private baseUrl = `${environment.api.url}/users`;
   private token = this.authService.getToken();
 
   constructor(

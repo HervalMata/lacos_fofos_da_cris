@@ -28,6 +28,7 @@ import {AuthService} from "./services/auth.service";
 import {JWT_OPTIONS, JwtModule} from "@auth0/angular-jwt";
 import {NavbarComponent} from './components/bootstrap/navbar/navbar.component';
 import {RefreshTokenInterceptorService} from "./services/refresh-token-interceptor.service";
+import {AppRoutingModule} from "./app-routing/app-routing.module";
 
 function jwtFactory(authService: AuthService) {
   return {
@@ -76,7 +77,7 @@ function jwtFactory(authService: AuthService) {
         deps: [AuthService]
       }
     }),
-
+    AppRoutingModule
   ],
   providers: [
     {

@@ -4,13 +4,14 @@ import {Observable} from "rxjs/internal/Observable";
 import {ProductCategory} from "../../model";
 import {map} from "rxjs/operators";
 import {AuthService} from "../auth.service";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductCategoryHttpService {
 
-  private baseApi = 'http://localhost:8000/api';
+  private baseApi = environment.api.url;
   private token = this.authService.getToken();
 
   constructor(
