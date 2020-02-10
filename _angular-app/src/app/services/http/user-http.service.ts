@@ -31,46 +31,30 @@ export class UserHttpService {
     });
     return this.http.get<{ data: Array<User>, meta: any }>
     (this.baseUrl, {
-      params,
-      headers: {
-        'Authorization': `Bearer ${this.token}`
-      }
+      params
     });
   }
 
   get(id: number): Observable<User> {
-    return this.http.get<{data: User}>
-    (`${this.baseUrl}/${id}`,{
-      headers: {
-        'Authorization' : `Bearer ${this.token}`
-      }
-    }).pipe(map(response => response.data));
+    return this.http.get<{ data: User }>
+    (`${this.baseUrl}/${id}`)
+      .pipe(map(response => response.data));
   }
 
   create(data: User): Observable<User> {
-    return this.http.post<{data: User}>
-    (this.baseUrl, data,{
-      headers: {
-        'Authorization' : `Bearer ${this.token}`
-      }
-    }).pipe(map(response => response.data));
+    return this.http.post<{ data: User }>
+    (this.baseUrl, data,)
+      .pipe(map(response => response.data));
   }
 
   update(id: number, data: User): Observable<User> {
-    return this.http.put<{data: User}>
-    (`${this.baseUrl}/${id}`, data,{
-      headers: {
-        'Authorization' : `Bearer ${this.token}`
-      }
-    }).pipe(map(response => response.data));
+    return this.http.put<{ data: User }>
+    (`${this.baseUrl}/${id}`, data)
+      .pipe(map(response => response.data));
   }
 
   destroy(id: number): Observable<any> {
     return this.http.delete
-    (`${this.baseUrl}/${id}`,{
-      headers: {
-        'Authorization' : `Bearer ${this.token}`
-      }
-    });
+    (`${this.baseUrl}/${id}`);
   }
 }

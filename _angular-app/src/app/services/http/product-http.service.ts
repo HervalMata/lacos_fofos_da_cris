@@ -28,46 +28,30 @@ export class ProductHttpService implements HttpResource<Product> {
     });
     return this.http.get<{ data: Array<Product>, meta: any }>
     (this.baseUrl, {
-      params,
-      headers: {
-        'Authorization' : `Bearer ${this.token}`
-      }
+      params
     });
   }
 
   get(id: number): Observable<Product> {
-    return this.http.get<{data: Product}>
-    (`${this.baseUrl}/${id}`,{
-      headers: {
-        'Authorization' : `Bearer ${this.token}`
-      }
-    }).pipe(map(response => response.data));
+    return this.http.get<{ data: Product }>
+    (`${this.baseUrl}/${id}`)
+      .pipe(map(response => response.data));
   }
 
   create(data: Product): Observable<Product> {
-    return this.http.post<{data: Product}>
-    (this.baseUrl, data,{
-      headers: {
-        'Authorization' : `Bearer ${this.token}`
-      }
-    }).pipe(map(response => response.data));
+    return this.http.post<{ data: Product }>
+    (this.baseUrl, data,)
+      .pipe(map(response => response.data));
   }
 
   update(id: number, data: Product): Observable<Product> {
-    return this.http.put<{data: Product}>
-    (`${this.baseUrl}/${id}`, data,{
-      headers: {
-        'Authorization' : `Bearer ${this.token}`
-      }
-    }).pipe(map(response => response.data));
+    return this.http.put<{ data: Product }>
+    (`${this.baseUrl}/${id}`, data)
+      .pipe(map(response => response.data));
   }
 
   destroy(id: number): Observable<any> {
     return this.http.delete
-    (`${this.baseUrl}/${id}`,{
-      headers: {
-        'Authorization' : `Bearer ${this.token}`
-      }
-    });
+    (`${this.baseUrl}/${id}`);
   }
 }
