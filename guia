@@ -314,3 +314,6 @@ Aplicação Web Angular
 
 98 - Protegendo paginas internas com o guardiao
               - ng g g guards/auth
+
+99 - Criando interceptor para renovar token
+              - ng g s services/refresh-token-interceptor
