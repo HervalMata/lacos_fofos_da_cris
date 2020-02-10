@@ -21,13 +21,14 @@ export class ProductViewModalComponent implements OnInit {
   @Input()
   _productId: number;
 
-  @ViewChild(ModalComponent)
-  modal: ModalComponent;
-
   @Output()
   onError: EventEmitter<HttpErrorResponse> = new EventEmitter<HttpErrorResponse>();
 
-  constructor(private productHttp: ProductHttpService) { }
+  @ViewChild(ModalComponent)
+  modal: ModalComponent;
+
+  constructor(private productHttp: ProductHttpService) {
+  }
 
   ngOnInit() {
   }

@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
   name: 'numberFormatBr'
@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class NumberFormatBrPipe implements PipeTransform {
 
   transform(value: any, args?: any): any {
-    return new Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'});
+    return new Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(value);
   }
 
 }

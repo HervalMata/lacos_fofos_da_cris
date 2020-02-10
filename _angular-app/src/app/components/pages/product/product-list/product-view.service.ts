@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {ProductListComponent} from "./product-list.component";
 import {NotifyMessageService} from "../../../../services/notify-message.service";
 import {HttpErrorResponse} from "@angular/common/http";
@@ -18,7 +18,7 @@ export class ProductViewService {
 
   showModalView(productId: number) {
     this._productListComponent.productId = productId;
-    this._productListComponent.productNewModal.showModal();
+    this._productListComponent.productViewModal.showModal();
   }
 
   onViewError($event: HttpErrorResponse) {

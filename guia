@@ -292,3 +292,5 @@ Aplicação Web Angular
               - ng g s components/pages/user/user-list/user-insert
               - ng g s components/pages/user/user-list/user-edit
               - ng g s components/pages/user/user-list/user-delete
+
+

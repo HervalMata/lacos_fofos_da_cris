@@ -13,7 +13,8 @@ export class UserEditModalComponent implements OnInit {
 
   user: User = {
     name: '',
-    email: ""
+    email: "",
+    password: ''
   };
 
   @Input()

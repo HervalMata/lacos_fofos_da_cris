@@ -23,10 +23,6 @@ export class UserListComponent implements OnInit {
     itemsPerPage: 10
   };
 
-  user = {
-    name: ''
-  };
-
   @ViewChild(UserNewModalComponent)
   userNewModal: UserNewModalComponent;
 
