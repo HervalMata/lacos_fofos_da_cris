@@ -27,6 +27,7 @@ import {UserNewModalComponent} from './components/pages/user/user-new-modal/user
 import {UserDeleteModalComponent} from './components/pages/user/user-delete-modal/user-delete-modal.component';
 import {AuthService} from "./services/auth.service";
 import {JWT_OPTIONS, JwtModule} from "@auth0/angular-jwt";
+import {NavbarComponent} from './components/bootstrap/navbar/navbar.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -69,7 +70,8 @@ function jwtFactory(authService: AuthService) {
     UserListComponent,
     UserEditModalComponent,
     UserNewModalComponent,
-    UserDeleteModalComponent
+    UserDeleteModalComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
