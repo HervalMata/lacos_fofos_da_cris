@@ -328,3 +328,6 @@ Aplicação Web Angular
 103 - Configurando ambiente na aplicação
 
 104 - Configuração de ambiente com controle de versão
+
+105 - Criando estrutura de filtros e ordenacoes na API
+             - composer require mnabialek/laravel-eloquent-filter

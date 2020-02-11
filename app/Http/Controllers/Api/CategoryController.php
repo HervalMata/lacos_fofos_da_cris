@@ -2,13 +2,15 @@
 
 namespace LacosFofos\Http\Controllers\Api;
 
+use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use LacosFofos\Http\Controllers\Controller;
+use LacosFofos\Http\Filters\CategoryFilter;
 use LacosFofos\Http\Requests\CategoryRequest;
 use LacosFofos\Http\Resources\CategoryResource;
 use LacosFofos\Models\Category;
-use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -19,7 +21,9 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        $categories = $request->has('all') ? Category::all() : Category::paginate(5);
+        $filter = app(CategoryFilter::class);
+        $filterQuery = Category::filtered($filter);
+        $categories = $request->has('all') ? $filterQuery->get() : $filterQuery->paginate(5);
         return CategoryResource::collection($categories);
     }
 
@@ -67,7 +71,7 @@ class CategoryController extends Controller
      *
      * @param Category $category
      * @return JsonResponse
-     * @throws \Exception
+     * @throws Exception
      */
     public function destroy(Category $category)
     {

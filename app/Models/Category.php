@@ -4,10 +4,12 @@ namespace LacosFofos\Models;
 
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+use Mnabialek\LaravelEloquentFilter\Traits\Filterable;
 
 class Category extends Model
 {
     use Sluggable;
+    use Filterable;
     protected $fillable = ['name', 'active'];
 
     /**
