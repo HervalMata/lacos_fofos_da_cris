@@ -331,3 +331,7 @@ Aplicação Web Angular
 
 105 - Criando estrutura de filtros e ordenacoes na API
              - composer require mnabialek/laravel-eloquent-filter
+
+106 - Criando componente para renderizar a ordenacao
+             - ng g c components/common/sort-column
+             - ng g c components/pages/category/category-search-form
