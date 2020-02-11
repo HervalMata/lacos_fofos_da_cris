@@ -3,15 +3,18 @@
   <table class="table table-striped">
     <thead>
     <tr>
-      <td colspan="5">
+      <td colspan="2">
         <button class="btn btn-primary" (click)="userInsertService.showModalInsert()">Novo Usuário</button>
+      </td>
+      <td colspan="4">
+        <user-search-form (onSearch)="search($event)"></user-search-form>
       </td>
     </tr>
     <tr>
-      <th style="width: 5%">Id</th>
-      <th style="width: 45%">Nome</th>
-      <th style="width: 10%">Email</th>
-      <th style="width: 10%">Criada em</th>
+      <th (onSort)="sort($event)" [sortColumn]="sortColumn" columnName="id" style="width: 5%">Id</th>
+      <th (onSort)="sort($event)" [sortColumn]="sortColumn" columnName="name" style="width: 45%">Nome</th>
+      <th (onSort)="sort($event)" [sortColumn]="sortColumn" columnName="email" style="width: 10%">Email</th>
+      <th (onSort)="sort($event)" [sortColumn]="sortColumn" columnName="created_at" style="width: 10%">Criada em</th>
       <th style="width: 20%">Ações</th>
     </tr>
     </thead>

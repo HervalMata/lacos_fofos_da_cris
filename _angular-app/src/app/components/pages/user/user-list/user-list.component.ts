@@ -23,6 +23,8 @@ export class UserListComponent implements OnInit {
     itemsPerPage: 10
   };
 
+  sortColumn = {column: '', sort: ''};
+
   @ViewChild(UserNewModalComponent)
   userNewModal: UserNewModalComponent;
 
@@ -33,6 +35,7 @@ export class UserListComponent implements OnInit {
   userDeleteModal: UserDeleteModalComponent;
 
   userId: number;
+  searchText: string;
 
   constructor(
     public userHttp: UserHttpService,
@@ -50,7 +53,11 @@ export class UserListComponent implements OnInit {
   }
 
   getUsers() {
-    this.userHttp.list({page: this.pagination.page})
+    this.userHttp.list({
+      page: this.pagination.page,
+      sort: this.sortColumn.column === '' ? null : this.sortColumn,
+      search: this.searchText
+    })
       .subscribe((response) => {
         this.users = response.data;
         this.pagination.totalItems = response.meta.total;
@@ -63,4 +70,12 @@ export class UserListComponent implements OnInit {
     this.getUsers();
   }
 
+  sort(sortColumn) {
+    this.getUsers();
+  }
+
+  search(search) {
+    this.searchText = search;
+    this.getUsers();
+  }
 }

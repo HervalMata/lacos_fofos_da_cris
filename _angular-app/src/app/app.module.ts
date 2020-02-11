@@ -32,6 +32,14 @@ import {AppRoutingModule} from "./app-routing/app-routing.module";
 import {SortColumnComponent} from './components/common/sort-column/sort-column.component';
 import {CategorySearchFormComponent} from './components/pages/category/category-search-form/category-search-form.component';
 import {CategoryFormComponent} from './components/pages/category/category-form/category-form.component';
+import {FieldErrorComponent} from './components/bootstrap/field-error/field-error.component';
+import {IsInvalidDirective} from './directives/is-invalid.directive';
+import {ListErrorComponent} from './components/bootstrap/list-error/list-error.component';
+import {CardErrorComponent} from './components/bootstrap/card-error/card-error.component';
+import {ProductSearchFormComponent} from './components/pages/product/product-search-form/product-search-form.component';
+import {ProductFormComponent} from './components/pages/product/product-form/product-form.component';
+import {UserSearchFormComponent} from './components/pages/user/user-search-form/user-search-form.component';
+import {UserFormComponent} from './components/pages/user/user-form/user-form.component';
 
 function jwtFactory(authService: AuthService) {
   return {
@@ -69,7 +77,15 @@ function jwtFactory(authService: AuthService) {
     NavbarComponent,
     SortColumnComponent,
     CategorySearchFormComponent,
-    CategoryFormComponent
+    CategoryFormComponent,
+    FieldErrorComponent,
+    IsInvalidDirective,
+    ListErrorComponent,
+    CardErrorComponent,
+    ProductSearchFormComponent,
+    ProductFormComponent,
+    UserSearchFormComponent,
+    UserFormComponent
   ],
   imports: [
     BrowserModule,

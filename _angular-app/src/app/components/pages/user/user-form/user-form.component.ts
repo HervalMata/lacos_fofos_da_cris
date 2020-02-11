@@ -1,18 +1,22 @@
 import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import {FormGroup} from "@angular/forms";
-import fieldsOptions from "./category-fields-options";
+import fieldsOptions from "./user-fields-options";
 
 @Component({
-  selector: 'category-form',
-  templateUrl: './category-form.component.html',
-  styleUrls: ['./category-form.component.css']
+  selector: 'user-form',
+  templateUrl: './user-form.component.html',
+  styleUrls: ['./user-form.component.css']
 })
-export class CategoryFormComponent implements OnInit {
+export class UserFormComponent implements OnInit {
 
   @Input()
   form: FormGroup;
 
   constructor(private changeRef: ChangeDetectorRef) {
+  }
+
+  get fieldOptions(): any {
+    return fieldsOptions;
   }
 
   ngOnInit() {
@@ -22,7 +26,4 @@ export class CategoryFormComponent implements OnInit {
     this.changeRef.detectChanges();
   }
 
-  get fieldOptions(): any {
-    return fieldsOptions;
-  }
 }

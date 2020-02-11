@@ -1,8 +1,9 @@
 import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
-import {User} from "../../../../model";
 import {ModalComponent} from "../../../bootstrap/modal/modal.component";
 import {HttpErrorResponse} from "@angular/common/http";
 import {UserHttpService} from "../../../../services/http/user-http.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import fieldsOptions from "../../category/category-form/category-fields-options";
 
 @Component({
   selector: 'user-new-modal',
@@ -11,11 +12,8 @@ import {UserHttpService} from "../../../../services/http/user-http.service";
 })
 export class UserNewModalComponent implements OnInit {
 
-  user: User = {
-    name: '',
-    email: "",
-    password: ''
-  };
+  form: FormGroup;
+  errors = {};
 
   @ViewChild(ModalComponent)
   modal: ModalComponent;
@@ -25,18 +23,39 @@ export class UserNewModalComponent implements OnInit {
   @Output()
   onError: EventEmitter<HttpErrorResponse> = new EventEmitter<HttpErrorResponse>();
 
-  constructor(private userHttp: UserHttpService) { }
+  constructor(
+    private userHttp: UserHttpService,
+    private formBuilder: FormBuilder
+  ) {
+    const maxlength = fieldsOptions.name.validationMessage.maxlength;
+    const minlength = fieldsOptions.name.validationMessage.minlength;
+    this.form = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.maxLength(maxlength)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.maxLength(maxlength), Validators.minLength(minlength)]],
+    });
+  }
 
   ngOnInit() {
   }
 
   submit() {
-    this.userHttp.create(this.user)
+    this.userHttp.create(this.form.value)
       .subscribe((user) => {
+        this.form.reset({
+          name: '',
+          email: '',
+          password: ''
+        });
         console.log(user);
         this.onSuccess.emit(user);
         this.modal.hide();
-      }, error => this.onError.emit(error));
+      }, responseError => {
+        if (responseError.status === 422) {
+          this.errors = responseError.error.errors
+        }
+        this.onError.emit(responseError)
+      });
   }
 
   showModal() {
@@ -47,4 +66,7 @@ export class UserNewModalComponent implements OnInit {
     console.log($event);
   }
 
+  showErrors() {
+    return Object.keys(this.errors).length != 0;
+  }
 }

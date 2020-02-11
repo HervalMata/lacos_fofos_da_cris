@@ -1,0 +1,27 @@
+<div [formGroup]="form" class="form-group">
+  <label [for]="fieldOptions.name">{{fieldOptions.name.label}}</label>
+  <input [id]="fieldOptions.name.id" [maxlength]="fieldOptions.name.validationMessage.maxLength" class="form-control"
+         formControlName="name" isInvalid name="name"
+         type="text">
+  <field-error [field]="form.get('name')"
+               [label]="fieldOptions.name.label"
+               [messages]="fieldOptions.name.validationMessage"></field-error>
+</div>
+<div [formGroup]="form" class="form-group">
+  <label [for]="fieldOptions.email">{{fieldOptions.email.label}}</label>
+  <input [id]="fieldOptions.email.id" class="form-control" formControlName="email"
+         isInvalid name="email" type="text">
+  <field-error [field]="form.get('email')"
+               [label]="fieldOptions.email.label"></field-error>
+</div>
+<div [formGroup]="form" class="form-group">
+  <label [for]="fieldOptions.password">{{fieldOptions.password.label}}</label>
+  <input [id]="fieldOptions.password.id" [maxlength]="fieldOptions.password.validationMessage.maxLength"
+         [minlength]="fieldOptions.password.validationMessage.minLength"
+         class="form-control" formControlName="password" isInvalid
+         name="password"
+         type="text">
+  <field-error [field]="form.get('password')"
+               [label]="fieldOptions.password.label"
+               [messages]="fieldOptions.password.validationMessage"></field-error>
+</div>

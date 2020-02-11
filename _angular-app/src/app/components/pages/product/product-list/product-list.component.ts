@@ -25,6 +25,8 @@ export class ProductListComponent implements OnInit {
     itemsPerPage: 10
   };
 
+  sortColumn = {column: '', sort: ''};
+
   product = {
     name: ''
   };
@@ -42,6 +44,7 @@ export class ProductListComponent implements OnInit {
   productViewModal: ProductViewModalComponent;
 
   productId: number;
+  searchText: string;
 
   constructor(
     public productHttp: ProductHttpService,
@@ -61,7 +64,11 @@ export class ProductListComponent implements OnInit {
   }
 
   getProducts() {
-    this.productHttp.list({page: this.pagination.page})
+    this.productHttp.list({
+      page: this.pagination.page,
+      sort: this.sortColumn.column === '' ? null : this.sortColumn,
+      search: this.searchText
+    })
       .subscribe((response) => {
         this.products = response.data;
         this.pagination.totalItems = response.meta.total;
@@ -74,4 +81,12 @@ export class ProductListComponent implements OnInit {
     this.getProducts();
   }
 
+  sort(sortColumn) {
+    this.getProducts();
+  }
+
+  search(search) {
+    this.searchText = search;
+    this.getProducts();
+  }
 }
