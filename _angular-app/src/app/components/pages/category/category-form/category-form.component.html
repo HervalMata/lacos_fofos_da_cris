@@ -1,0 +1,9 @@
+<div [formGroup]="form" class="form-group">
+  <label for="name">Nome</label>
+  <input class="form-control" formControlName="name" id="name" name="name" required type="text">
+</div>
+<div [formGroup]="form" class="form-group form-check">
+  <input class="form-check-input" formControlName="active" id="active" name="active" required
+         type="checkbox">
+  <label for="active">Ativo?</label>
+</div>

@@ -335,3 +335,6 @@ Aplicação Web Angular
 106 - Criando componente para renderizar a ordenacao
              - ng g c components/common/sort-column
              - ng g c components/pages/category/category-search-form
+
+107 - Criando componente somente para formulario
+             - ng g c components/pages/category/category-form
