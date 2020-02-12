@@ -366,3 +366,12 @@ Aplicação Web Angular
              - ng g s services/http/product-photo-http
              - ng g c components/pages/product-photo/product-photo-upload
              - ng g c components/pages/product-photo/product-photo-edit-modal
+
+111 - Listagem de saída de produtos
+             - ng g c components/pages/product-output/product-output-list
+             - ng g c components/pages/product-output/product-output-form
+             - ng g c components/pages/product-output/product-output-new-modal
+             - ng g c components/pages/product-output/product-output-search-form
+             - ng g s services/http/product-output-http
+             - ng g s components/pages/product-output/product-output-list/product-output-insert
+             - ng g s components/pages/product-output/product-output-form/product-id-field

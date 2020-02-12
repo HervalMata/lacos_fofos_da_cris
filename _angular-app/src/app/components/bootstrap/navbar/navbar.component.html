@@ -10,11 +10,17 @@
       <li [routerLinkActive]="['active']" class="nav-item">
         <a [routerLink]="['/categories/list']" class="nav-link">Categorias</a>
       </li>
-      <li class="nav-item">
-        <a [routerLink]="['/products/list']" class="nav-link">Produtos</a>
-      </li>
-      <li class="nav-item">
-        <a [routerLink]="['/inputs/list']" class="nav-link">Entradas</a>
+      <li class="nav-item dropdown">
+        <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+           id="navbarDropdown1" role="button">
+          Produto
+        </a>
+        <div aria-labelledby="navbarDropdown1" class="dropdown-menu dropdown-menu-right">
+          <a [routerLink]="['/products/list']" class="nav-link dropdown-item">Produto</a>
+          <div class="dropdown-divider"></div>
+          <a [routerLink]="['/inputs/list']" class="nav-link dropdown-item">Entrada</a>
+          <a [routerLink]="['/outputs/list']" class="nav-link dropdown-item">Saida</a>
+        </div>
       </li>
       <li class="nav-item">
         <a [routerLink]="['/users/list']" class="nav-link">Usuários</a>

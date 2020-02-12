@@ -4,10 +4,10 @@ namespace LacosFofos\Http\Controllers\Api;
 
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use LacosFofos\Http\Controllers\Controller;
+use LacosFofos\Http\Filters\ProductOutputFilter;
 use LacosFofos\Http\Requests\ProductOutputRequest;
 use LacosFofos\Http\Resources\ProductOutputResource;
 use LacosFofos\Models\ProductOutput;
-use Illuminate\Http\Request;
 
 class ProductOutputController extends Controller
 {
@@ -18,7 +18,9 @@ class ProductOutputController extends Controller
      */
     public function index()
     {
-        $outputs = ProductOutput::with('product')->paginate();
+        $filter = app(ProductOutputFilter::class);
+        $filterQuery = ProductOutput::with('product')->filtered($filter);
+        $outputs = $filterQuery->paginate();
         return ProductOutputResource::collection($outputs);
     }
 

@@ -11,7 +11,7 @@ import {ProductInputInsertService} from "./product-input-insert.service";
 })
 export class ProductInputListComponent implements OnInit {
 
-  products: Array<ProductInputs> = [];
+  inputs: Array<ProductInputs> = [];
 
   pagination = {
     page: 1,
@@ -45,7 +45,7 @@ export class ProductInputListComponent implements OnInit {
       search: this.searchText
     })
       .subscribe((response) => {
-        this.products = response.data;
+        this.inputs = response.data;
         this.pagination.totalItems = response.meta.total;
         this.pagination.itemsPerPage = response.meta.per_page;
       });
