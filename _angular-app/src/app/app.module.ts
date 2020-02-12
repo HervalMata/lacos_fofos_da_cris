@@ -33,13 +33,18 @@ import {SortColumnComponent} from './components/common/sort-column/sort-column.c
 import {CategorySearchFormComponent} from './components/pages/category/category-search-form/category-search-form.component';
 import {CategoryFormComponent} from './components/pages/category/category-form/category-form.component';
 import {FieldErrorComponent} from './components/bootstrap/field-error/field-error.component';
-import {IsInvalidDirective} from './directives/is-invalid.directive';
+import {IsInvalidControlDirective, IsInvalidDirective} from './directives/is-invalid.directive';
 import {ListErrorComponent} from './components/bootstrap/list-error/list-error.component';
 import {CardErrorComponent} from './components/bootstrap/card-error/card-error.component';
 import {ProductSearchFormComponent} from './components/pages/product/product-search-form/product-search-form.component';
 import {ProductFormComponent} from './components/pages/product/product-form/product-form.component';
 import {UserSearchFormComponent} from './components/pages/user/user-search-form/user-search-form.component';
 import {UserFormComponent} from './components/pages/user/user-form/user-form.component';
+import {ProductInputListComponent} from './components/pages/product-input/product-input-list/product-input-list.component';
+import {ProductInputFormComponent} from './components/pages/product-input/product-input-form/product-input-form.component';
+import {ProductInputNewModalComponent} from './components/pages/product-input/product-input-new-modal/product-input-new-modal.component';
+import {ProductInputSearchFormComponent} from './components/pages/product-input/product-input-search-form/product-input-search-form.component';
+import {Select2Module} from "ng2-select2";
 
 function jwtFactory(authService: AuthService) {
   return {
@@ -80,18 +85,24 @@ function jwtFactory(authService: AuthService) {
     CategoryFormComponent,
     FieldErrorComponent,
     IsInvalidDirective,
+    IsInvalidControlDirective,
     ListErrorComponent,
     CardErrorComponent,
     ProductSearchFormComponent,
     ProductFormComponent,
     UserSearchFormComponent,
-    UserFormComponent
+    UserFormComponent,
+    ProductInputListComponent,
+    ProductInputFormComponent,
+    ProductInputNewModalComponent,
+    ProductInputSearchFormComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    Select2Module,
     NgxPaginationModule,
     JwtModule.forRoot({
       jwtOptionsProvider: {
@@ -100,7 +111,8 @@ function jwtFactory(authService: AuthService) {
         deps: [AuthService]
       }
     }),
-    AppRoutingModule
+    AppRoutingModule,
+    Select2Module
   ],
   providers: [
     {

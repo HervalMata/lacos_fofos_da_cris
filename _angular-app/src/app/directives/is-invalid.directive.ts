@@ -1,4 +1,4 @@
-import {Directive, ElementRef} from '@angular/core';
+import {Directive, ElementRef, Input} from '@angular/core';
 import {NgControl} from "@angular/forms";
 
 @Directive({
@@ -13,16 +13,39 @@ export class IsInvalidDirective {
   }
 
   ngOnInit() {
-    this.control.valueChanges.subscribe(() => {
-      const nativeElement = this.element.nativeElement;
-      if (this.control.invalid && (this.control.dirty || this.control.touched)) {
-        if (!nativeElement.classList.contains('is-invalid')) {
-          nativeElement.classList.add('is-invalid');
-        }
-      } else {
-        nativeElement.classList.remove('is-invalid');
-      }
-    })
+    toogleClassInvalid(this.control, this.element.nativeElement);
   }
 
+}
+
+@Directive({
+  selector: '[isInvalidControl]'
+})
+export class IsInvalidControlDirective {
+
+  control: NgControl;
+
+  constructor(private element: ElementRef) {
+  }
+
+  @Input()
+  set isInvalidControl(value) {
+    this.control = value;
+  }
+
+  ngOnInit() {
+    toogleClassInvalid(this.control, this.element.nativeElement);
+  }
+}
+
+function toogleClassInvalid(control: NgControl, nativeElement: any) {
+  this.control.valueChanges.subscribe(() => {
+    if (control.invalid && (control.dirty || control.touched)) {
+      if (!nativeElement.classList.contains('is-invalid')) {
+        nativeElement.classList.add('is-invalid');
+      }
+    } else {
+      nativeElement.classList.remove('is-invalid');
+    }
+  });
 }

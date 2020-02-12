@@ -2,16 +2,16 @@
 
 namespace LacosFofos\Http\Controllers\Api;
 
-use Illuminate\Database\Eloquent\Builder;
+use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use Illuminate\Http\Response;
 use LacosFofos\Common\OnlyTrashed;
 use LacosFofos\Http\Controllers\Controller;
+use LacosFofos\Http\Filters\ProductFilter;
 use LacosFofos\Http\Requests\ProductRequest;
 use LacosFofos\Http\Resources\ProductResource;
 use LacosFofos\Models\Product;
-use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -23,10 +23,12 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
+        $filter = app(ProductFilter::class);
         $query = Product::query();
         $query = $this->onlyTrashedIfRequested($request, $query);
-        $products = ProductResource::collection($query->paginate(10));
-        return $products;
+        $filterQuery = $query->filtered($filter);
+        $products = $filter->hasFilterParameter() ? $filter->get() : $filterQuery->paginate(10);
+        return ProductResource::collection($products);
     }
 
     /**
@@ -73,7 +75,7 @@ class ProductController extends Controller
      *
      * @param Product $product
      * @return JsonResponse
-     * @throws \Exception
+     * @throws Exception
      */
     public function destroy(Product $product)
     {

@@ -3,8 +3,16 @@ export interface Category {
   name: string;
   readonly slug?: string;
   active: boolean;
-  readonly created_at?: {date: string};
-  readonly updated_at?: {date: string};
+  readonly created_at?: { date: string };
+  readonly updated_at?: { date: string };
+}
+
+export interface ProductInputs {
+  id?: number;
+  amount: number;
+  readonly created_at?: { date: string };
+  readonly updated_at?: { date: string };
+  product: Product;
 }
 
 export interface Product {
@@ -14,8 +22,8 @@ export interface Product {
   price: number;
   readonly slug?: string;
   active: boolean;
-  readonly created_at?: {date: string};
-  readonly updated_at?: {date: string};
+  readonly created_at?: { date: string };
+  readonly updated_at?: { date: string };
 }
 
 export interface ProductCategory {
