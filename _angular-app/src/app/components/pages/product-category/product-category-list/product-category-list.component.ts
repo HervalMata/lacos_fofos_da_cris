@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {Category, Product, ProductCategory} from "../../../../model";
+import {Component, OnInit} from '@angular/core';
+import {Product, ProductCategory} from "../../../../model";
 import {ActivatedRoute} from "@angular/router";
 import {ProductHttpService} from "../../../../services/http/product-http.service";
 import {ProductCategoryHttpService} from "../../../../services/http/product-category-http.service";

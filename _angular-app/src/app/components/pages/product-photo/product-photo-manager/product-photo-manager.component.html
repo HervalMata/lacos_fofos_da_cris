@@ -1,0 +1,12 @@
+<div class="row">
+  <h1>Fotos de {{product?.name}}</h1>
+  <div class="col-md-12">
+    <product-photo-upload (onSuccess)="onInsertSuccess($event)"></product-photo-upload>
+  </div>
+  <div class="col-md-12">
+    <a *ngFor="let photo of photos" [href]="photo.photo_url" data-caption="Fotos do Produto: ${product.name}"
+       data-fancybox="gallery">
+      <img [id]="'photo-' + photo.id" [src]="photo.photo_url">
+    </a>
+  </div>
+</div>
