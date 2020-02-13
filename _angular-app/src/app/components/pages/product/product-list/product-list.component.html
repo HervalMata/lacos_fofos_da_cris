@@ -4,35 +4,45 @@
     <thead>
     <tr>
       <td colspan="2">
-        <button class="btn btn-primary" (click)="productInsertService.showModalInsert()">Novo Produto</button>
+        <button (click)="productInsertService.showModalInsert()" class="btn btn-success">Novo Produto</button>
       </td>
-      <td colspan="4">
+      <td colspan="6">
         <product-search-form (onSearch)="search($event)"></product-search-form>
       </td>
     </tr>
     <tr>
-      <th (onSort)="sort($event)" [sortColumn]="sortColumn" columnName="id" style="width: 5%">Id</th>
-      <th (onSort)="sort($event)" [sortColumn]="sortColumn" columnName="name" style="width: 45%">Nome</th>
-      <th (onSort)="sort($event)" [sortColumn]="sortColumn" columnName="price" style="width: 10%">Preço</th>
-      <th style="width: 10%">Ativa?</th>
-      <th (onSort)="sort($event)" [sortColumn]="sortColumn" columnName="created_at" style="width: 10%">Criada em</th>
-      <th style="width: 20%">Ações</th>
+      <th (onSort)="sort($event)" [sortColumn]="sortColumn" class="alignCenter" columnName="id" style="width: 5%">Id
+      </th>
+      <th (onSort)="sort($event)" [sortColumn]="sortColumn" class="alignCenter" columnName="name" style="width: 40%">
+        Nome
+      </th>
+      <th (onSort)="sort($event)" [sortColumn]="sortColumn" class="alignCenter" columnName="price" style="width: 10%">
+        Preço
+      </th>
+      <th class="alignCenter" style="width: 10%">Ativa?</th>
+      <th (onSort)="sort($event)" [sortColumn]="sortColumn" class="alignCenter" columnName="created_at"
+          style="width: 10%">Criada em
+      </th>
+      <th class="alignCenter" style="width: 25%">Ações</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor = "let product of products | paginate: {itemsPerPage: 10, currentPage: pagination.page, totalItems: pagination.totalItems}">
-      <td>{{product.id}}</td>
+      <td class="alignCenter">{{product.id}}</td>
       <td>{{product.name}}</td>
-      <td>{{product.price | numberFormatBr}}</td>
+      <td class="alignCenter">{{product.price | numberFormatBr}}</td>
       <td><i class='fas' [ngClass]="{'fa-check' : product.active, 'fa-times': !product.active }"></i></td>
       <td>{{product.created_at.date | date: "dd/MM/yyyy"}}</td>
       <td>
         <a (click)="productViewService.showModalView(product.id)" href="javascript:void(0)" title="Visualizar"><i
           class=" fas fa-search"></i></a>
+        |
         <a (click)="productEditService.showModalEdit(product.id)" href="javascript:void(0)" title="Editar"><i
           class=" fas fa-edit"></i></a>
+        |
         <a (click)="productDeleteService.showModalDelete(product.id)" href="javascript:void(0)" title="Excluir"><i
           class=" fas fa-trash-alt"></i></a>
+        |
         <a [routerLink]="['/products', product.id, 'categories', 'list']">Categorias</a>
         |
         <a [routerLink]="['/products', product.id, 'photos', 'manager']">Fotos</a>

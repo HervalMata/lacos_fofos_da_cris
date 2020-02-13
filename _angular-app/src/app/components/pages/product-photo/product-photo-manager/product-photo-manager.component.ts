@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {ProductPhotoHttpService} from "../../../../services/http/product-photo-http.service";
 import {NotifyMessageService} from "../../../../services/notify-message.service";
 import {ProductPhotoEditModalComponent} from "../product-photo-edit-modal/product-photo-edit-modal.component";
+import {ProductPhotoDeleteModalComponent} from "../product-photo-delete-modal/product-photo-delete-modal.component";
 
 declare const $;
 
@@ -23,6 +24,9 @@ export class ProductPhotoManagerComponent implements OnInit {
 
   @ViewChild(ProductPhotoEditModalComponent)
   editModal: ProductPhotoEditModalComponent;
+
+  @ViewChild(ProductPhotoDeleteModalComponent)
+  deleteModal: ProductPhotoDeleteModalComponent;
 
   constructor(
     private route: ActivatedRoute,
@@ -68,14 +72,33 @@ export class ProductPhotoManagerComponent implements OnInit {
     this.notifyMessage.success('Foto substituida com sucesso.');
   }
 
+  onDeleteSuccess(data: ProductPhoto) {
+    $.fancybox.getInstance().close();
+    this.deleteModal.hideModal();
+    const index = this.photos.findIndex((photo: ProductPhoto) => {
+      return photo.id == this.photoIdToEdit;
+    });
+    this.photos.splice(index, 1);
+    this.notifyMessage.success('Foto excluida com sucesso.');
+  }
+
   private configFancyBox() {
     $.fancybox.defaults.btnTpl.edit = `
     <a class="fancybox-button" data-fancybox-edit title="Substituir foto" href="javascript:void(0)" style="text-align: center;">
         <i class="fas fa-edit"></i>
     </a>
     `;
+    $.fancybox.defaults.btnTpl.delete = `
+    <a class="fancybox-button" data-fancybox-delete title="Excluir foto" href="javascript:void(0)" style="text-align: center;">
+        <i class="fas fa-trash-alt"></i>
+    </a>
+    `;
     $.fancybox.defaults.buttons = ['download', 'edit', 'zoom', 'slideshow', 'fullscreen', 'thumbs', 'close'];
     $('body').on('click', '[data-fancybox-edit]', (e) => {
+      const photoId = this.getPhotoIdFromSlideShow();
+      this.editModal.showModal();
+    });
+    $('body').on('click', '[data-fancybox-delete]', (e) => {
       const photoId = this.getPhotoIdFromSlideShow();
       this.editModal.showModal();
     });

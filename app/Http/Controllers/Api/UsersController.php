@@ -2,12 +2,14 @@
 
 namespace LacosFofos\Http\Controllers\Api;
 
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use LacosFofos\Common\OnlyTrashed;
 use LacosFofos\Events\UserCreatedEvent;
 use LacosFofos\Http\Controllers\Controller;
+use LacosFofos\Http\Filters\UserFilter;
 use LacosFofos\Http\Requests\UserRequest;
 use LacosFofos\Http\Resources\UserResource;
 use LacosFofos\Models\User;
@@ -15,6 +17,7 @@ use LacosFofos\Models\User;
 class UsersController extends Controller
 {
     use OnlyTrashed;
+
     /**
      * Display a listing of the resource.
      *
@@ -22,9 +25,11 @@ class UsersController extends Controller
      */
     public function index(Request $request)
     {
+        $filter = app(UserFilter::class);
         $query = User::query();
         $query = $this->onlyTrashedIfRequested($request, $query);
-        $users = $request->has('all') ? $query->all(): $query->paginate(10);
+        $filterQuery = $query->filtered($filter);
+        $users = $filter->hasFilterParameter() ? $filterQuery->get() : $filterQuery->paginate(10);
         return UserResource::collection($users);
     }
 
@@ -71,7 +76,7 @@ class UsersController extends Controller
      *
      * @param User $user
      * @return JsonResponse
-     * @throws \Exception
+     * @throws Exception
      */
     public function destroy(User $user)
     {

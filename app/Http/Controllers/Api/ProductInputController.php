@@ -2,7 +2,6 @@
 
 namespace LacosFofos\Http\Controllers\Api;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use LacosFofos\Http\Controllers\Controller;
 use LacosFofos\Http\Filters\ProductInputFilter;
@@ -19,9 +18,7 @@ class ProductInputController extends Controller
      */
     public function index()
     {
-        /** @var ProductInputFilter $filter */
         $filter = app(ProductInputFilter::class);
-        /** @var Builder $filterQuery */
         $filterQuery = ProductInput::with('product')->filtered($filter);
         $inputs = $filterQuery->paginate();
         return ProductInputResource::collection($inputs);

@@ -375,3 +375,6 @@ Aplicação Web Angular
              - ng g s services/http/product-output-http
              - ng g s components/pages/product-output/product-output-list/product-output-insert
              - ng g s components/pages/product-output/product-output-form/product-id-field
+
+112 - Ajustes e correções
+             - ng g c components/pages/product-photo/product-photo-delete-modal

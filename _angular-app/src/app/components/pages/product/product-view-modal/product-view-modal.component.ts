@@ -21,11 +21,11 @@ export class ProductViewModalComponent implements OnInit {
   @Input()
   _productId: number;
 
-  @Output()
-  onError: EventEmitter<HttpErrorResponse> = new EventEmitter<HttpErrorResponse>();
-
   @ViewChild(ModalComponent)
   modal: ModalComponent;
+
+  @Output()
+  onError: EventEmitter<HttpErrorResponse> = new EventEmitter<HttpErrorResponse>();
 
   constructor(private productHttp: ProductHttpService) {
   }
@@ -38,7 +38,12 @@ export class ProductViewModalComponent implements OnInit {
     this._productId = value;
     if (this._productId) {
       this.productHttp.get(this._productId)
-        .subscribe((product) => this.product = product);
+        .subscribe((product) => this.product = product,
+          responseError => {
+            if (responseError.status === 401) {
+              this.modal.hide();
+            }
+          });
     }
   }
 

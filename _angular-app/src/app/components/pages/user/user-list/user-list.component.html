@@ -4,7 +4,7 @@
     <thead>
     <tr>
       <td colspan="2">
-        <button class="btn btn-primary" (click)="userInsertService.showModalInsert()">Novo Usuário</button>
+        <button (click)="userInsertService.showModalInsert()" class="btn btn-success">Novo Usuário</button>
       </td>
       <td colspan="4">
         <user-search-form (onSearch)="search($event)"></user-search-form>

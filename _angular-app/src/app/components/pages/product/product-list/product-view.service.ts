@@ -17,7 +17,7 @@ export class ProductViewService {
   }
 
   showModalView(productId: number) {
-    this._productListComponent.productId = productId;
+    //this._productListComponent.productId = productId;
     this._productListComponent.productViewModal.showModal();
   }
 

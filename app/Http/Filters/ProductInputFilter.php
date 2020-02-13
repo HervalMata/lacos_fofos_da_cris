@@ -30,6 +30,6 @@ class ProductInputFilter extends SimpleQueryFilter
 
     protected function applySearch($value)
     {
-        $this->query->where('name', 'LIKE', '%$value%');
+        $this->query->where('product.name', 'LIKE', '%$value%');
     }
 }

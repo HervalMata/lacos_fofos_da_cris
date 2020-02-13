@@ -27,7 +27,7 @@ export class ProductInputNewModalComponent implements OnInit {
     private productInputHttp: ProductInputHttpService,
     private formBuilder: FormBuilder
   ) {
-    const min = fieldsOptions.price.validationMessage.min;
+    //const min = fieldsOptions.price.validationMessage.min;
     this.form = this.formBuilder.group({
       product_id: ['', [Validators.required]],
       amount: ['', [Validators.required, Validators.min(fieldsOptions.amount.validationMessage.min)]],

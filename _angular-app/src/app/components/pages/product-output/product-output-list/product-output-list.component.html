@@ -4,7 +4,7 @@
     <thead>
     <tr>
       <td colspan="2">
-        <button (click)="productOutputInsertService.showModalInsert()" class="btn btn-primary">Nova Saida de Estoque
+        <button (click)="productOutputInsertService.showModalInsert()" class="btn btn-success">Nova Saida de Estoque
         </button>
       </td>
       <td colspan="4">
@@ -22,7 +22,7 @@
     <tr
       *ngFor="let output of outputs | paginate: {itemsPerPage: 10, currentPage: pagination.page, totalItems: pagination.totalItems}">
       <td>{{output.id}}</td>
-      <td>{{output.name}}</td>
+      <td>{{output.product.name}}</td>
       <td>{{output.amount}}</td>
       <td>{{output.created_at.date | date: "dd/MM/yyyy"}}</td>
     </tr>

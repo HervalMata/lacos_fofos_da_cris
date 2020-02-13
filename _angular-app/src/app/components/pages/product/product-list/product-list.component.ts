@@ -27,10 +27,6 @@ export class ProductListComponent implements OnInit {
 
   sortColumn = {column: '', sort: ''};
 
-  product = {
-    name: ''
-  };
-
   @ViewChild(ProductNewModalComponent)
   productNewModal: ProductNewModalComponent;
 

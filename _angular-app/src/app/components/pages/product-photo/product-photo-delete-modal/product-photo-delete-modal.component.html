@@ -1,0 +1,15 @@
+<modal>
+  <h5 modal-title>
+    Exclusão de foto
+  </h5>
+  <div modal-body>
+    <card-error *ngIf="showErrors()">
+      <list-error [errors]="errors"></list-error>
+    </card-error>
+    Confirma a exclusão da foto?
+  </div>
+  <div modal-footer>
+    <button class="btn btn-secondary" data-dismiss="modal" type="button">Fechar</button>
+    <button (click)="destroy()" class="btn btn-primary" type="submit">Excluir</button>
+  </div>
+</modal>

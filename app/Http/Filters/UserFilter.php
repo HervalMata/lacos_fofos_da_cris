@@ -6,10 +6,10 @@ namespace LacosFofos\Http\Filters;
 
 use Mnabialek\LaravelEloquentFilter\Filters\SimpleQueryFilter;
 
-class ProductFilter extends SimpleQueryFilter
+class UserFilter extends SimpleQueryFilter
 {
     protected $simpleFilters = ['search'];
-    protected $simpleSorts = ['id', 'name', 'price', 'created_at', 'stock'];
+    protected $simpleSorts = ['id', 'name', 'email', 'created_at'];
 
     public function hasFilterParameter()
     {
@@ -21,7 +21,7 @@ class ProductFilter extends SimpleQueryFilter
 
     protected function applySearch($value)
     {
-        $this->query->where('name', 'LIKE', '%$value%')
-            ->orWhere('description', 'LIKE', '%$value%');
+        $this->query->where('name', 'LIKE', "%$value$")
+            ->orWhere('email', 'LIKE', "%$value$");
     }
 }
