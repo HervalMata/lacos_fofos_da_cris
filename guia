@@ -378,3 +378,8 @@ Aplicação Web Angular
 
 112 - Ajustes e correções
              - ng g c components/pages/product-photo/product-photo-delete-modal
+
+Aplicação mobile
+113 - Gerando aplicaçao ionic
+             - npm i -g ionic@3.9.2
+             - ionic start _whatsapp sidemenu
