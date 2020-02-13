@@ -383,3 +383,8 @@ Aplicação mobile
 113 - Gerando aplicaçao ionic
              - npm i -g ionic@3.9.2
              - ionic start _whatsapp sidemenu
+
+114 - Definindo navegacao para opcao de login
+             - ionic g page login-options
+             - ionic g page login-phone-number
+             - ionic g page reset-phone-number
