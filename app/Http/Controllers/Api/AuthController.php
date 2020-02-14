@@ -2,11 +2,17 @@
 
 namespace LacosFofos\Http\Controllers\Api;
 
+use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use JWTAuth;
+use LacosFofos\Firebase\Auth as FirebaseAuth;
 use LacosFofos\Http\Controllers\Controller;
 use LacosFofos\Http\Resources\UserResource;
+use LacosFofos\Models\UserProfile;
+use LacosFofos\Rules\FirebaseTokenVerification;
+use Lang;
 
 class AuthController extends Controller
 {
@@ -20,10 +26,31 @@ class AuthController extends Controller
     {
         $this->validateLogin($request);
         $credentials = $this->credentials($request);
-        $token = \JWTAuth::attempt($credentials);
-        return $token ? ['token' => $token] : response()->json([
-            'error' => \Lang::get('auth.failed')
-        ], 400);
+        $token = JWTAuth::attempt($credentials);
+        return $this->responseToken($token);
+    }
+
+    /**
+     * @param Request $request
+     * @return array|JsonResponse
+     */
+    public function loginFirebase(Request $request)
+    {
+        $this->validate($request, [
+            'token' => new FirebaseTokenVerification()
+        ]);
+
+        /** @var FirebaseAuth $firebaseAuth */
+        $firebaseAuth = app(FirebaseAuth::class);
+        $user = $firebaseAuth->user($request->token);
+        $profile = UserProfile::where('phone_number', $user->phoneNumber)->first();
+        $token = null;
+
+        if ($profile) {
+            $token = Auth::guard('api')->login($profile->user);
+        }
+
+        return $this->responseToken($token);
     }
 
     /**
@@ -31,7 +58,7 @@ class AuthController extends Controller
      */
     public function logout()
     {
-        \Auth::guard('api')->logout();
+        Auth::guard('api')->logout();
         return response()->json([], 204);
     }
 
@@ -40,13 +67,27 @@ class AuthController extends Controller
      */
     public function me()
     {
-        $user = \Auth::guard('api')->user();
+        $user = Auth::guard('api')->user();
         return new UserResource($user);
     }
 
+    /**
+     * @return array
+     */
     public function refresh()
     {
-        $token = \Auth::guard('api')->refresh();
+        $token = Auth::guard('api')->refresh();
         return ['token' => $token];
+    }
+
+    /**
+     * @param $token
+     * @return array|JsonResponse
+     */
+    private function responseToken($token)
+    {
+        return $token ? ['token' => $token] : response()->json([
+            'error' => Lang::get('auth.failed')
+        ], 400);
     }
 }

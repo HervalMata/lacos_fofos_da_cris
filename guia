@@ -402,3 +402,9 @@ Aplicação mobile
              - composer require kreait/firebase-php:4.0
              - php artisan make:model Models/UserProfile -m
              - php artisan migrate:refresh --seed
+
+
+119 - Finalizando Autenticação na API com FIREBASE
+             - php artisan make:rule FirebaseTokenVerification
+             - ionic g provider auth
+             - ionic g page main
