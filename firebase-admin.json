@@ -1,0 +1,12 @@
+{
+    "type": "service_account",
+    "project_id": "lacos-fofos-da-cris",
+    "private_key_id": "d6c91142cba93b06658f75721f9799983a229a33",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCRms0fOBXK1UEA\n1LttbOuhSalvrG9KgbG8bnutr32GxjqH7QErRC8bDAzVT7A9JFMq5zDsxyIsYTqs\nuPzebHajN5u0K30pK/f/zCWi4jwBP3yxFchx3XLoxmCeOcuazNxg2boTpvDJYHQO\nYPl+h/71OLPhsufpq1KnTsCdUr2kbb4Ox0LZPAkcpb9m2ydg8OPUrPJSf5EsydrV\naG1b66b/HeBDR17nfnk+w/CIK46I0ezDEK9rWZC8JJk1ubCOEaVVkdvOzIrVoTfP\ncOynZeLGsdzU6u8dxSIIjSaHBSFsczy1uOrHXXjB7uWZbIUVQOO07CXZozFIsmFk\nc46SoXiFAgMBAAECggEAC1WfRXXf5Gk+D9V/kvYZUEs5VbMjpWDROCzq6HYHxy0O\niLQ/agx7FOzsNtK8PRY4edeDbHstQtfSxyKjX0vW3xUeGXllMIZMCO1DD29IYoR8\nWBYCWN13QNLohIiqkS4Esxlf2IB0sAhtIGLA0+5m6in0KXam16l5hq1Puy93XyGk\naBz+cBccG9r+7L0dDTwJwllpJzdb0iKEbuC1B34vxY06ra4U/3jO9ZDsLbaINXAf\niywwywVJYSoeW72103nI73JEtpXc0SkwQwQXosDGDW3A2mX9zqudSUWQBl8rXw/M\nTc2N8bNWKqPLXOrNYGxd97UGUt/w4SlUJG7akt2PpQKBgQDNjA4AzhwD3TRzofvr\nAUasewZUDvZSsmDmSkzrY4EsvwoVKTHaJTK6tRt1z60kDH3fvkCFdBZ63vOCq9vM\nbPudN49xTp6we0ug3dlDzCoXBzKvbWUHOB4Z968hj4UMrdywl4z6ucYiq7eQDaLN\nJCyfxCsJ2riFzCDrWCJuaytAHwKBgQC1WCa0pk2oREEq/5BHvzxoGvwQ03WOFqtU\nyPBB6hIH67EYWYXv7oOOUB/rednDfTtL5VSStrXThUTITHoSb42bIdAYMlaYamQ8\n09W3RAWLcORGeEp3T5PMUwdE2UyTfJwqdGu+2PSPYF3wXWWcrs3+hYEHQodksdT0\nS6CLADKi2wKBgE00Ve4nfI5W/+SO6ziR+iG+89mO5SaaqZrWPZ4MefB8sSTRnE/7\nuNo4PGA76SSpLH5lz4ZQ3EC6jWx/cMeQB9I9lDtS9HgFV5rMuVal0QllQrxxsojL\no0LNrZJFfgwNId+SjPl/3dQX+5K4DHZRKBG6dQ/2f2iCC7taF1SyHESxAoGAaCQL\ndkra5frsgcjqDongItj8UJ1fMQ4LrlEGyJOnby0HMriWlkce/ac97Xi4ee99EgTN\nIMQUfzhVW8GviM7PP3uXiY2+9SCEF/p/DRPfK0jVjzKdcQ8eDYTQ89TmiPxSon7h\nMWRebcglqle4dtZcLgJ1KromDsmhRfn4ZFrkuWkCgYB5LxqMaZAMXJt5nVIA6i4/\nJJpgvfYFEmEzHGIGTxU/YA0T7r0dnQp2O6rqAAXXfsz1tc7EAO8Ywjlf7Yq4MbJv\n+c35J1TaVZc4VP/S+WiWL/GeHcUbTE4ozJ61LqWLELIQVMDqvnM3WZZ8wiB2kbmN\nZzQcPwwbyLnWosgoc7+o/Q==\n-----END PRIVATE KEY-----\n",
+    "client_email": "firebase-adminsdk-4ubm3@lacos-fofos-da-cris.iam.gserviceaccount.com",
+    "client_id": "106708042074286043557",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-4ubm3%40lacos-fofos-da-cris.iam.gserviceaccount.com"
+}

@@ -2,6 +2,7 @@
 
 namespace LacosFofos\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -62,5 +63,13 @@ class User extends Authenticatable implements JWTSubject
             'email' => $this->email,
             'name' => $this->name
         ];
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function profile()
+    {
+        return $this->hasOne(UserProfile::class)->withDefault();
     }
 }

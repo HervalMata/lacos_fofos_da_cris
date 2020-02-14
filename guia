@@ -397,3 +397,8 @@ Aplicação mobile
              - ionic g provider firebase-auth
 
 117 - Pegar usuário autenticado do firebase
+
+118 - Integrando FIrebase no Backend
+             - composer require kreait/firebase-php:4.0
+             - php artisan make:model Models/UserProfile -m
+             - php artisan migrate:refresh --seed

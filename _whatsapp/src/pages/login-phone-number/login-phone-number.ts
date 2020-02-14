@@ -24,8 +24,8 @@ export class LoginPhoneNumberPage {
   }
 
   ionViewDidLoad() {
-    this.firebaseAuth.firebase.auth().onAuthStateChanged((user) => {
-      console.log(user);
+    this.firebaseAuth.getUser().then((token) => {
+      console.log(token), (error) => console.log(error);
     });
     this.firebaseAuth.makePhoneNumberForm('#firebase-ui');
   }
