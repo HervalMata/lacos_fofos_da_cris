@@ -1,4 +1,3 @@
-import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import firebaseConfig from '../../app/firebase-config';
 import * as firebase from "firebase";
@@ -16,8 +15,12 @@ declare const firebaseui;
 @Injectable()
 export class FirebaseAuthProvider {
 
-  constructor(public http: HttpClient) {
+  constructor() {
     firebase.initializeApp(firebaseConfig);
+  }
+
+  get firebase() {
+    return firebase;
   }
 
   async makePhoneNumberForm(selectorElement: string) {

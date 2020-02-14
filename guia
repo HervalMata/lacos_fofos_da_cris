@@ -395,3 +395,5 @@ Aplicação mobile
 116 - Configuracoes Firebase
              - npm i scriptjs@2.5.8 --save
              - ionic g provider firebase-auth
+
+117 - Pegar usuário autenticado do firebase
