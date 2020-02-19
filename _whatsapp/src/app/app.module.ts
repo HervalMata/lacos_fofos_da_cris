@@ -15,6 +15,9 @@ import {FirebaseAuthProvider} from '../providers/firebase-auth/firebase-auth';
 import {AuthProvider} from '../providers/auth/auth';
 import {HttpClientModule} from "@angular/common/http";
 import {MainPage} from "../pages/main/main";
+import {CustomerCreatePage} from "../pages/customer-create/customer-create";
+import {ReactiveFormsModule} from "@angular/forms";
+import {CustomerHttpProvider} from '../providers/customer-http/customer-http';
 
 @NgModule({
   declarations: [
@@ -24,12 +27,14 @@ import {MainPage} from "../pages/main/main";
     LoginOptionsPage,
     LoginPhoneNumberPage,
     ResetPhoneNumberPage,
-    MainPage
+    MainPage,
+    CustomerCreatePage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -39,14 +44,16 @@ import {MainPage} from "../pages/main/main";
     LoginOptionsPage,
     LoginPhoneNumberPage,
     ResetPhoneNumberPage,
-    MainPage
+    MainPage,
+    CustomerCreatePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FirebaseAuthProvider,
-    AuthProvider
+    AuthProvider,
+    CustomerHttpProvider
   ]
 })
 export class AppModule {

@@ -1,0 +1,64 @@
+<div class="row">
+  <h5 modal-title>
+    Atualizar perfil
+  </h5>
+  <div class="col-md-12">
+    <card-error *ngIf="showErrors()">
+      <list-error [errors]="errors"></list-error>
+    </card-error>
+  </div>
+  <div class="col-md-12">
+    <div>
+      <img [src]="authService.me.profile.photo_url" class="profile-photo">
+    </div>
+  </div>
+  <div class="col-md-12">
+    <form (submit)="submit()" [formGroup]="form">
+      <div class="form-group">
+        <label [for]="fieldsOptions.name.label">Nome</label>
+        <input [id]="fieldsOptions.name.id" class="form-control" formControlName="name" isInvalid type="text">
+        <field-error [field]="form.get('name')"
+                     [label]="fieldsOptions.name.label"
+                     [messages]="fieldsOptions.name.validationMessage"></field-error>
+      </div>
+      <div class="form-group">
+        <label [for]="fieldsOptions.email.label">Email</label>
+        <input [id]="fieldsOptions.email.id" class="form-control" formControlName="email" isInvalid type="text">
+        <field-error [field]="form.get('email')"
+                     [label]="fieldsOptions.email.label"
+                     [messages]="fieldsOptions.email.validationMessage"></field-error>
+      </div>
+      <div class="form-group">
+        <label [for]="fieldsOptions.password.label">Senha</label>
+        <input [id]="fieldsOptions.password.id" class="form-control" formControlName="password" isInvalid
+               type="password">
+        <field-error [field]="form.get('password')"
+                     [label]="fieldsOptions.password.label"
+                     [messages]="fieldsOptions.password.validationMessage"></field-error>
+      </div>
+      <div class="form-group">
+        <label for="phone_number">Telefone</label>
+        <div class="input-group">
+          <input class="form-control" formControlName="phone_number" id="phone_number" type="text">
+          <div class="input-group-append">
+            <button (click)="openPhoneNumberAuthModal()" class="btn btn-info" type="button">Novo</button>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="photo">Foto do perfil</label>
+        <input (change)="onChoosePhoto($event.target.files)" class="form-control" id="photo" type="file">
+        <div class="row col-md-12" style="margin-top: 5px">
+          <button (click)="removePhoto()" [hidden]="!has_photo" class="btn btn-danger" type="button">
+            Remover Foto do perfil
+          </button>
+          <div [hidden]="has_photo || !authService.me.profile.has_photo" class="alert alert-info">
+            Para remover a foto, salve o formulário.
+          </div>
+        </div>
+      </div>
+      <button [disabled]="!form.valid" class="btn btn-success" type="submit">Salvar</button>
+    </form>
+  </div>
+</div>
+<phone-number-auth-modal></phone-number-auth-modal>

@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::name('customers.web_phone_number_update')->get('customers/phone_number_update/{token}', function () {
+    return view('customer.phone_number_change', compact('token'));
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

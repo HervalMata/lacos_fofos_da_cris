@@ -47,11 +47,18 @@ export interface ProductCategory {
   categories: Category[];
 }
 
-export interface User{
+export interface User {
   id?: number;
   name: string;
   email: string;
   password?: string;
-  readonly created_at?: {date: string};
-  readonly updated_at?: {date: string};
+  profile?: UserProfile;
+  readonly created_at?: { date: string };
+  readonly updated_at?: { date: string };
+}
+
+export interface UserProfile {
+  has_photo: boolean;
+  photo_url: string;
+  phone_number: string;
 }

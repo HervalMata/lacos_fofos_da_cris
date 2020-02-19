@@ -408,3 +408,17 @@ Aplicação mobile
              - php artisan make:rule FirebaseTokenVerification
              - ionic g provider auth
              - ionic g page main
+
+120 - Criação dos vendedores e clientes
+             - php artisan migrate:refresh --seed
+             - php artisan make:controller Api/CustomerController
+             - php artisan make:request CustomerRequest
+             - php artisan make:rule PhoneNumberUnique
+             - php artisan make:controller Api/UserProfileController
+             - php artisan make:request UserProfileUpdateRequest
+             - ng g c components/pages/user/user-profile
+             - ng g s services/http/user-profile-http
+             - ng g c components/common/phone-number-auth-modal
+             - ionic g provider customer-http
+             - php artisan make:request PhoneNumberToUpdateRequest
+             - php artisan make:mail PhoneNumberChangeMail

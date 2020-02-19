@@ -6,10 +6,20 @@
 -->
 <ion-header>
   <ion-navbar color="green-dark">
-    <ion-title>reset-phone-number</ion-title>
+    <ion-title>Alterar número de telefone</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-
+  <ion-list>
+    <ion-item>
+      <ion-label stacked>Email</ion-label>
+      <ion-input [formControl]="email" type="text"></ion-input>
+    </ion-item>
+  </ion-list>
+  <button (click)="showFirebaseUI()" [disabled]="email.invalid" [hidden]="canShowFirebaseUI" block color="green-dark"
+          ion-button>
+    Continuar
+  </button>
+  <div [hidden]="!canShowFirebaseUI || email.invalid" id="firebase-ui"></div>
 </ion-content>

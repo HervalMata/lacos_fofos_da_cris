@@ -12,8 +12,10 @@ declare const firebaseui;
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
 */
-@Injectable()
-export class FirebaseAuthProvider {
+@Injectable({
+  providedIn: 'root'
+})
+export class FirebaseAuthService {
 
   private ui;
 
@@ -25,21 +27,21 @@ export class FirebaseAuthProvider {
     return firebase;
   }
 
-  async makePhoneNumberForm(selectorElement: string): Promise<any> {
-    await this.getFirebaseUI();
-    return new Promise((resolve) => {
-      const uiConfig = {
-        signInOptions: [
-          firebase.auth.PhoneAuthProvider.PROVIDER_ID
-        ],
-        callbacks: {
-          signInSuccessWithAuthResult: (authResult, redirectUrl) => {
-            return false;
-          }
+  async makePhoneNumberForm(selectorElement: string) {
+    const firebaseui = await this.getFirebaseUI();
+    const uiConfig = {
+      signInOptions: [
+        firebase.auth.PhoneAuthProvider.PROVIDER_ID
+      ],
+      callbacks: {
+        signInSuccessWithAuthResult: (authResult, redirectUrl) => {
+          return false;
         }
-      };
-      this.makeFormFirebaseUI(selectorElement, uiConfig);
-    });
+      }
+    };
+
+    //const ui = new firebaseui.auth.AuthUI(firebase.auth());
+    //ui.start(selectorElement, uiConfig);
   }
 
   getUser(): Promise<firebase.User | null> {
@@ -71,6 +73,22 @@ export class FirebaseAuthProvider {
     }
   }
 
+  logout(): Promise<any> {
+    return this.firebase.auth().signOut();
+  }
+
+  private makeFormFirebaseUI(SelectorElement, uiConfig) {
+    if (!this.ui) {
+      this.ui = new firebaseui.auth.AuthUI(firebase.auth());
+      this.ui.start(SelectorElement, uiConfig);
+    } else {
+      this.ui.delete().then(() => {
+        this.ui = new firebaseui.auth.AuthUI(firebase.auth());
+        this.ui.start(SelectorElement, uiConfig);
+      })
+    }
+  }
+
   private async getFirebaseUI(): Promise<any> {
     return new Promise((resolve, reject) => {
       if (window.hasOwnProperty('firebaseui')) {
@@ -85,17 +103,5 @@ export class FirebaseAuthProvider {
 
   private getCurrentUser(): firebase.User | null {
     return this.firebase.auth().currentUser;
-  }
-
-  private makeFormFirebaseUI(SelectorElement, uiConfig) {
-    if (!this.ui) {
-      this.ui = new firebaseui.auth.AuthUI(firebase.auth());
-      this.ui.start(SelectorElement, uiConfig);
-    } else {
-      this.ui.delete().then(() => {
-        this.ui = new firebaseui.auth.AuthUI(firebase.auth());
-        this.ui.start(SelectorElement, uiConfig);
-      })
-    }
   }
 }
