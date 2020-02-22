@@ -97,6 +97,7 @@ class User extends Authenticatable implements JWTSubject
             DB::rollBack();
             throw $e;
         }
+        return $this;
     }
 
     /**

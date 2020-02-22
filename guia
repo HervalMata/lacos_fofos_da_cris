@@ -422,3 +422,24 @@ Aplicação mobile
              - ionic g provider customer-http
              - php artisan make:request PhoneNumberToUpdateRequest
              - php artisan make:mail PhoneNumberChangeMail
+
+121 -  Iniciando conceito de grupos de chat
+             - php artisan make:model Models/ChatGroup -m -f -r
+             - php artisan make:seeder ChatGroupsTableSeeder
+             - php artisan make:request ChatGroupUpdateRequest
+             - php artisan make:request ChatGroupCreateRequest
+             - php artisan make:resource ChatGroupResource
+             - ng g c components/pages/chat-group/chat-group-list
+             - ng g c components/pages/chat-group/chat-group-edit-modal
+             - ng g c components/pages/chat-group/chat-group-new-modal
+             - ng g c components/pages/chat-group/chat-group-delete-modal
+             - ng g s services/http/chat-group-http
+             - ng g s components/pages/chat-group/chat-group-list/chat-group-insert
+             - ng g s components/pages/chat-group/chat-group-list/chat-group-edit
+             - ng g s components/pages/chat-group/chat-group-list/chat-group-delete
+             - ng g s components/pages/chat-group/chat-group-form/chat-group-id-field
+             - ng g c components/pages/chat-group/chat-group-form
+             - ng g c components/pages/chat-group/chat-group-search-form
+             - php artisan make:migration create_chat_group_user_table --create=chat_group_user
+             - npm i ionic2-super-tabs@4.3.0 --save
+             - ionic g component chat-group-list

@@ -22,20 +22,24 @@ class UsersTableSeeder extends Seeder
         ])->each(function ($user) {
             Model::reguard();
             $user->updateWithProfile([
-                'phone_number' => '+165055512234',
+                'phone_number' => '+16505551234',
                 'photo' => $this->getAdminPhoto()
             ]);
             Model::unguard();
+            $user->profile->firebase_uid = 'nn3h2N2HukhvtxLIkGhT8JwgWhL2';
+            $user->save();
         });
         factory(User::class, 1)->create([
-            'email' => 'cliente@user.com',
+            'email' => 'customer@user.com',
             'role' => User::ROLE_CUSTOMER
         ])->each(function ($user) {
             Model::reguard();
             $user->updateWithProfile([
-                'phone_number' => '+165055512235'
+                'phone_number' => '+16505551235'
             ]);
             Model::unguard();
+            $user->profile->firebase_uid = 'OrIN6XYdDMVeehXsPy1sJ0VX73S2';
+            $user->save();
         });
         factory(User::class, 50)->create([
             'role' => User::ROLE_CUSTOMER

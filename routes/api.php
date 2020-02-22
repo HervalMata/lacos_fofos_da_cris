@@ -34,6 +34,7 @@ Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
             Route::patch('products/{product}/restore', 'ProductController@restore');
             Route::patch('users/{user}/restore', 'UsersController@restore');
             Route::resource('users', 'UsersController', ['except' => ['create', 'edit']]);
+            Route::resource('chat_groups', 'ChatGroupController', ['except' => ['create', 'edit']]);
             Route::resource('categories', 'CategoryController', ['except' => ['create', 'edit']]);
             Route::resource('products', 'ProductController', ['except' => ['create', 'edit']]);
             Route::resource('products.categories', 'ProductCategoryController', ['only' => ['index', 'store', 'destroy']]);

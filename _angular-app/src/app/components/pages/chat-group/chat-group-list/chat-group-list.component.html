@@ -1,0 +1,55 @@
+<div class="row">
+  <h1>Listagem de Grupos</h1>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <td colspan="2">
+        <button (click)="chatGroupInsertService.showModalInsert()" class="btn btn-success">Novo Grupo</button>
+      </td>
+      <td colspan="6">
+        <chat-group-search-form (onSearch)="search($event)"></chat-group-search-form>
+      </td>
+    </tr>
+    <tr>
+      <th (onSort)="sort($event)" [sortColumn]="sortColumn" class="alignCenter" columnName="id" style="width: 15%">Id
+      </th>
+      <th (onSort)="sort($event)" [sortColumn]="sortColumn" class="alignCenter" columnName="name" style="width: 60%">
+        Nome
+      </th>
+      <th (onSort)="sort($event)" [sortColumn]="sortColumn" class="alignCenter" columnName="created_at"
+          style="width: 20%">Criada em
+      </th>
+      <th class="alignCenter" style="width: 10%">Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr
+      *ngFor="let chatGroup of chatGroups | paginate: {itemsPerPage: 10, currentPage: pagination.page, totalItems: pagination.totalItems}">
+      <td class="alignCenter">{{chatGroup.id}}</td>
+      <td><img class="chatGroup-photo" src="{{chatGroup.photo_url}}" title="{{chatGroup.name}}">{{chatGroup.name}}</td>
+      <td>{{chatGroup.count_users}}</td>
+      <td>{{chatGroup.created_at.date | date: "dd/MM/yyyy"}}</td>
+      <td>
+        <a (click)="chatGroupEditService.showModalEdit(chatGroup.id)" href="javascript:void(0)" title="Editar"><i
+          class=" fas fa-edit"></i></a>
+        |
+        <a (click)="chatGroupDeleteService.showModalDelete(chatGroup.id)" href="javascript:void(0)" title="Excluir"><i
+          class=" fas fa-trash-alt"></i></a>
+      </td>
+
+    </tr>
+    </tbody>
+  </table>
+  <pagination-controls (pageChange)="pageChanged($event)"
+                       nextLabel="Próxima"
+                       previousLabel="Anterior">
+  </pagination-controls>
+</div>
+<chat-group-new-modal (onError)="chatGroupInsertService.onInsertError($event)"
+                      (onSuccess)="chatGroupInsertService.onInsertSuccess($event)"></chat-group-new-modal>
+<chat-group-edit-modal (onError)="chatGroupEditService.onEditError($event)"
+                       (onSuccess)="chatGroupEditService.onEditSuccess($event)"
+                       [chatGroupId]="chatGroupId"></chat-group-edit-modal>
+<chat-group-delete-modal (onError)="chatGroupDeleteService.onDeleteError($event)"
+                         (onSuccess)="chatGroupDeleteService.onDeleteSuccess($event)"
+                         [chatGroupId]="chatGroupId"></chat-group-delete-modal>
