@@ -1,0 +1,10 @@
+<modal (onHide)="hideModal($event)">
+  <h5 modal-title>Excluir membro do Grupo - {{chatGroup?.name}}</h5>
+  <div modal-body>
+    Deseja excluir o membro {{user?.name}}?
+  </div>
+  <div modal-footer>
+    <button class="btn btn-secondary" data-dismiss="modal" type="button">Fechar</button>
+    <button (click)="destroy()" class="btn btn-primary" type="submit">Excluir</button>
+  </div>
+</modal>

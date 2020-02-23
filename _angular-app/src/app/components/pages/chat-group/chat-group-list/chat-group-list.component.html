@@ -13,8 +13,11 @@
     <tr>
       <th (onSort)="sort($event)" [sortColumn]="sortColumn" class="alignCenter" columnName="id" style="width: 15%">Id
       </th>
-      <th (onSort)="sort($event)" [sortColumn]="sortColumn" class="alignCenter" columnName="name" style="width: 60%">
+      <th (onSort)="sort($event)" [sortColumn]="sortColumn" class="alignCenter" columnName="name" style="width: 30%">
         Nome
+      </th>
+      <th (onSort)="sort($event)" [sortColumn]="sortColumn" class="alignCenter" columnName="email" style="width: 30%">
+        Email
       </th>
       <th (onSort)="sort($event)" [sortColumn]="sortColumn" class="alignCenter" columnName="created_at"
           style="width: 20%">Criada em
@@ -26,10 +29,14 @@
     <tr
       *ngFor="let chatGroup of chatGroups | paginate: {itemsPerPage: 10, currentPage: pagination.page, totalItems: pagination.totalItems}">
       <td class="alignCenter">{{chatGroup.id}}</td>
-      <td><img class="chatGroup-photo" src="{{chatGroup.photo_url}}" title="{{chatGroup.name}}">{{chatGroup.name}}</td>
-      <td>{{chatGroup.count_users}}</td>
+      <td><img alt="" class="chatGroup-photo" src="{{chatGroup.photo_url}}"
+               title="{{chatGroup.name}}">{{chatGroup.name}}</td>
+      <td class="alignCenter">{{chatGroup.count_users}}</td>
       <td>{{chatGroup.created_at.date | date: "dd/MM/yyyy"}}</td>
       <td>
+        <a [routerLink]="['/chat-groups', chatGroup.id, 'users', 'list']" href="javascript:void(0)" title="Usuários"><i
+          class=" fas fa-user"></i></a>
+        |
         <a (click)="chatGroupEditService.showModalEdit(chatGroup.id)" href="javascript:void(0)" title="Editar"><i
           class=" fas fa-edit"></i></a>
         |

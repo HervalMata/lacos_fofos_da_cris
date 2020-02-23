@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace LacosFofos\Firebase;
 
+use Exception;
 use Kreait\Firebase;
 use Kreait\Firebase\Database;
 use Kreait\Firebase\Database\Reference;
@@ -22,6 +23,18 @@ trait FirebaseSync
         static::deleted(function ($model) {
             $model->syncFbRemove();
         });
+
+        if (method_exists(__CLASS__, 'pivotAttached')) {
+            static::pivotAttached(function ($model, $relationName, $pivotIds, $pivotIdsAttribute) {
+                $model->syncPivotAttached($model, $relationName, $pivotIds, $pivotIdsAttribute);
+            });
+        }
+
+        if (method_exists(__CLASS__, 'pivotDetached')) {
+            static::pivotDetached(function ($model, $relationName, $pivotIds) {
+                $model->syncPivotDetached($model, $relationName, $pivotIds);
+            });
+        }
     }
 
     protected function syncFbCreate()
@@ -60,5 +73,28 @@ trait FirebaseSync
     protected function syncFbRemove()
     {
         $this->getModelReference()->remove();
+    }
+
+    /**
+     * @param $model
+     * @param $relationName
+     * @param $pivotIds
+     * @param $pivotIdsAttribute
+     * @throws Exception
+     */
+    protected function syncPivotAttached($model, $relationName, $pivotIds, $pivotIdsAttribute)
+    {
+        throw new Exception('Not Implemented');
+    }
+
+    /**
+     * @param $model
+     * @param $relationName
+     * @param $pivotIds
+     * @throws Exception
+     */
+    protected function syncPivotDetached($model, $relationName, $pivotIds)
+    {
+        throw new Exception('Not Implemented');
     }
 }

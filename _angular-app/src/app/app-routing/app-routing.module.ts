@@ -11,6 +11,7 @@ import {ProductPhotoManagerComponent} from "../components/pages/product-photo/pr
 import {ProductOutputListComponent} from "../components/pages/product-output/product-output-list/product-output-list.component";
 import {UserProfileComponent} from "../components/pages/user/user-profile/user-profile.component";
 import {ChatGroupListComponent} from "../components/pages/chat-group/chat-group-list/chat-group-list.component";
+import {ChatGroupUserListComponent} from "../components/pages/chat-group-user/chat-group-user-list/chat-group-user-list.component";
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'categories/list', component: CategoryListComponent, canActivate: [AuthGuard]},
   {path: 'users/list', component: UserListComponent, canActivate: [AuthGuard]},
   {path: 'chat_groups/list', component: ChatGroupListComponent, canActivate: [AuthGuard]},
+  {path: 'chat_groups/:chat_group/users/list', component: ChatGroupUserListComponent, canActivate: [AuthGuard]},
   {path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]},
   {path: 'products/:product/categories/list', component: ProductCategoryListComponent, canActivate: [AuthGuard]},
   {path: 'products/:product/photos/manager', component: ProductPhotoManagerComponent, canActivate: [AuthGuard]},

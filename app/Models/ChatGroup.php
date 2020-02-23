@@ -5,6 +5,7 @@ namespace LacosFofos\Models;
 
 use DB;
 use Exception;
+use Fico7489\Laravel\Pivot\Traits\PivotEventTrait;
 use File;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -17,6 +18,7 @@ class ChatGroup extends Model
 {
     use SoftDeletes;
     use FirebaseSync;
+    use PivotEventTrait;
 
     const BASE_PATH = 'app/public';
     const DIR_CHAT_GROUPS = 'chat_groups';
@@ -159,5 +161,36 @@ class ChatGroup extends Model
         $data['photo_url'] = $this->photo_url_base;
         unset($data['photo']);
         $this->getModelReference()->update($data);
+    }
+
+    /**
+     * @param $model
+     * @param $relationName
+     * @param $pivotIds
+     * @param $pivotIdsAttribute
+     */
+    protected function syncPivotAttached($model, $relationName, $pivotIds, $pivotIdsAttribute)
+    {
+        $users = User::whereIn('id', $pivotIds)->get();
+        $data = [];
+        foreach ($users as $user) {
+            $data["chat_groups/{$model->id}/users/{$user->profile->firebase_uid}"] = true;
+        }
+        $this->getFirebaseDatabase()->getReference()->update($data);
+    }
+
+    /**
+     * @param $model
+     * @param $relationName
+     * @param $pivotIds
+     */
+    protected function syncPivotDetached($model, $relationName, $pivotIds)
+    {
+        $users = User::whereIn('id', $pivotIds)->get();
+        $data = [];
+        foreach ($users as $user) {
+            $data["chat_groups/{$model->id}/users/{$user->profile->firebase_uid}"] = true;
+        }
+        $this->getFirebaseDatabase()->getReference()->update($data);
     }
 }

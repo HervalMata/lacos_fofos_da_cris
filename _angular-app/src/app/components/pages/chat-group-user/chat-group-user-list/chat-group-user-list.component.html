@@ -1,0 +1,48 @@
+<div class="row">
+  <h1>Membros do Grupo - {{chatGroup?.name}} | Total - {{chatGroup?.count_users}}</h1>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <td colspan="4">
+        <chat-group-user-new-modal (onError)="onInsertError($event)" (onSuccess)="onInsertSuccess($event)"
+                                   [chatGroupId]="chatGroupId"></chat-group-user-new-modal>
+      </td>
+    </tr>
+    <tr>
+      <th class="alignCenter" columnName="id" style="width: 15%">Id
+      </th>
+      <th class="alignCenter" columnName="name" style="width: 30%">
+        Nome
+      </th>
+      <th class="alignCenter" columnName="email" style="width: 30%">
+        Email
+      </th>
+      <th class="alignCenter" columnName="created_at"
+          style="width: 20%">Telefone
+      </th>
+      <th class="alignCenter" style="width: 10%">Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr
+      *ngFor="let user of users | paginate: {itemsPerPage: 10, currentPage: pagination.page, totalItems: pagination.totalItems}">
+      <td class="alignCenter">{{user.id}}</td>
+      <td><img alt="" class="profile-photo" class="chatGroup-photo" src="{{user.profile.photo_url}}"
+               title="{{user.name}}">{{user.name}}</td>
+      <td class="alignCenter">{{user.email}}</td>
+      <td class="alignCenter">{{user.profile.phone_number}}</td>
+      <td>
+        <a (click)="openModalDelete(user.id)" href="javascript:void(0)" title="Excluir"><i
+          class=" fas fa-trash-alt"></i></a>
+      </td>
+
+    </tr>
+    </tbody>
+  </table>
+  <pagination-controls (pageChange)="pageChanged($event)"
+                       nextLabel="Próxima"
+                       previousLabel="Anterior">
+  </pagination-controls>
+</div>
+<chat-group-user-delete-modal (onSuccess)="getUsers()" [chatGroupId]="chatGroupId"
+                              [userId]="userIdToDelete"></chat-group-user-delete-modal>

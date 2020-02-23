@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use LacosFofos\Firebase\FirebaseSync;
 use Mnabialek\LaravelEloquentFilter\Traits\Filterable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
@@ -16,6 +17,7 @@ class User extends Authenticatable implements JWTSubject
     use Notifiable;
     use SoftDeletes;
     use Filterable;
+    use FirebaseSync;
 
     const ROLE_SELLER = 1;
     const ROLE_CUSTOMER = 2;
@@ -141,5 +143,38 @@ class User extends Authenticatable implements JWTSubject
     public function profile()
     {
         return $this->hasOne(UserProfile::class)->withDefault();
+    }
+
+    protected function syncFbCreate()
+    {
+
+    }
+
+    protected function syncFbUpdate()
+    {
+
+    }
+
+    protected function syncFbRemove()
+    {
+
+    }
+
+    /**
+     *
+     */
+    protected function syncFbSetCustom()
+    {
+        $this->profile->refresh();
+        if ($this->profile->firebase_uid) {
+            $database = $this->getFirebaseDatabase();
+            $path = 'users/' . $this->profile->firebase_uid;
+            $reference = $database->getReference($path);
+            $reference->set([
+                'name' => $this->name,
+                'photo_url' => $this->photo_url,
+                'deleted_at' => $this->deleted_at
+            ]);
+        }
     }
 }

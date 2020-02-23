@@ -443,3 +443,13 @@ Aplicação mobile
              - php artisan make:migration create_chat_group_user_table --create=chat_group_user
              - npm i ionic2-super-tabs@4.3.0 --save
              - ionic g component chat-group-list
+
+122 - Membros do chat
+             - php artisan make:resource ChatGroupUserResource
+             - php artisan make:controller Api/ChatGroupUserController --resource
+             - php artisan make:request ChatGroupUserResquest
+             - ng g c components/pages/chat-group-user/chat-group-user-list
+             - ng g c components/pages/chat-group-user/chat-group-new
+             - ng g s services/http/chat-group-user-http
+             - ng g c components/pages/chat-group-user/chat-group-user-delete-modal
+             - composer require fico7489/laravel-pivot:2.2.*

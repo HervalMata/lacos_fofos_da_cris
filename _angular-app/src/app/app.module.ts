@@ -61,6 +61,9 @@ import {ChatGroupNewModalComponent} from './components/pages/chat-group/chat-gro
 import {ChatGroupDeleteModalComponent} from './components/pages/chat-group/chat-group-delete-modal/chat-group-delete-modal.component';
 import {ChatGroupFormComponent} from './components/pages/chat-group/chat-group-form/chat-group-form.component';
 import {ChatGroupSearchFormComponent} from './components/pages/chat-group/chat-group-search-form/chat-group-search-form.component';
+import {ChatGroupUserListComponent} from './components/pages/chat-group-user/chat-group-user-list/chat-group-user-list.component';
+import {ChatGroupUserNewModalComponent} from './components/pages/chat-group-user/chat-group-new-modal/chat-group-user-new-modal.component';
+import {ChatGroupUserDeleteModalComponent} from './components/pages/chat-group-user/chat-group-user-delete-modal/chat-group-user-delete-modal.component';
 
 function jwtFactory(authService: AuthService) {
   return {
@@ -127,7 +130,10 @@ function jwtFactory(authService: AuthService) {
     ChatGroupNewModalComponent,
     ChatGroupDeleteModalComponent,
     ChatGroupFormComponent,
-    ChatGroupSearchFormComponent
+    ChatGroupSearchFormComponent,
+    ChatGroupUserListComponent,
+    ChatGroupUserNewModalComponent,
+    ChatGroupUserDeleteModalComponent
   ],
   imports: [
     BrowserModule,

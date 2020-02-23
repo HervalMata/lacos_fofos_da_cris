@@ -34,5 +34,14 @@ export class ChatGroupListComponent {
         this.groups[index] = group;
       }
     });
+
+    database.ref('chat_groups').on('child_removed', (data) => {
+      const group = data.val() as ChatGroup;
+      const index = this.groups.findIndex((g) => g.id == group.id);
+
+      if (index !== -1) {
+        this.groups.slice(index, 1);
+      }
+    });
   }
 }
