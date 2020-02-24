@@ -1,0 +1,10 @@
+<!-- Generated template for the ChatContentDetailComponent component -->
+<ion-item
+  [ngClass]="{'chat-content-left' : !(message.user_id | isCurrentUser), 'chat-content-right' : message.user_id | isCurrentUser}"
+  no-lines text-wrap>
+  <strong [style.color]="(message.user|async)?.name | colorFirstLetter">
+    {{(message.user|async)?.name}}
+  </strong><br>
+  <span>{{message.content}}</span>
+  <p class="chat-content-datetime" text-right>{{message.created_at | amDateFormat: 'DD/MM/YYYY HH:mm'}}</p>
+</ion-item>

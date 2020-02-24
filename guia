@@ -453,3 +453,18 @@ Aplicação mobile
              - ng g s services/http/chat-group-user-http
              - ng g c components/pages/chat-group-user/chat-group-user-delete-modal
              - composer require fico7489/laravel-pivot:2.2.*
+
+
+123 - Mensagens do chat
+             - ionic g page chat-messages
+             - ionic g component chat-avatar
+             - ionic g component chat-footer
+             - ionic g component chat-content-right
+             - ionic g component chat-content-left
+             - ionic g component chat-content-detail
+             - npm i ngx-moment@3.1.0
+             - npm i moment@^2.22.2 --save
+             - npm i @auth0/angular-jwt@1.2.0 --save
+             - ionic g pipe is-current-user
+             - ionic g pipe build-url
+             - ionic g pipe color-first-letter
