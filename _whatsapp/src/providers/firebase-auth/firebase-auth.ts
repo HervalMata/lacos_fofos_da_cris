@@ -34,6 +34,7 @@ export class FirebaseAuthProvider {
         ],
         callbacks: {
           signInSuccessWithAuthResult: (authResult, redirectUrl) => {
+            resolve(true);
             return false;
           }
         }

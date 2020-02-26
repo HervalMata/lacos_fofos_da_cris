@@ -14,7 +14,7 @@ import {ChatMessage} from "../../../app/model";
 export class ChatContentRightComponent {
 
   @Input()
-  message: ChatMessage;
+  message: ChatMessage[] = [];
 
   constructor() {
   }

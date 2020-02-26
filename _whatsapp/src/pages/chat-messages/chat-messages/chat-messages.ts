@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {FirebaseAuthProvider} from "../../../providers/firebase-auth/firebase-auth";
-import {ChatMessage} from "../../../app/model";
-import {Observable} from "rxjs";
+import {Observable} from "rxjs/Observable";
+import { ChatMessage } from '../../../app/model';
 
 /**
  * Generated class for the ChatMessagesPage page.
@@ -29,18 +29,17 @@ export class ChatMessagesPage {
 
   ionViewDidLoad() {
     const database = this.firebaseAuth.firebase.database();
-    database.ref('chatgroups/1/messages').on('child_added', (data) => {
-      const message = data.val();
+    database.ref('chat_groups/1/messages').on('child_added', (data) => {
 
-      database.ref('users/${message.user_id}').on('value', (data) => {
+      const message = data.val();
+      console.log(message.user_id);
         message.user = Observable.create((observer) => {
-          database.ref('users/${message.user_id}').on('value', (data) => {
+          database.ref(`users/${message.user_id}`).on('value', (data) => {
             const user = data.val();
             observer.next(user);
           });
         });
         this.messages.push(message);
-      })
     });
   }
 

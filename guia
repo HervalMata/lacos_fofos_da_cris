@@ -468,3 +468,9 @@ Aplicação mobile
              - ionic g pipe is-current-user
              - ionic g pipe build-url
              - ionic g pipe color-first-letter
+
+124 - Envio de mensagens
+             - php artisan make:seeder ChatMessagesFbSeeder
+             - php artisan make:request ChatMessageFbRequest
+             - php artisan make:controller Api/ChatMessageFbController --resource
+             - ionic g provider http/chat-message-http
