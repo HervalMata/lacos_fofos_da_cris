@@ -474,3 +474,18 @@ Aplicação mobile
              - php artisan make:request ChatMessageFbRequest
              - php artisan make:controller Api/ChatMessageFbController --resource
              - ionic g provider http/chat-message-http
+
+125 - Iniciando com Android e Envio de mensagem com audio
+             - npm i -g cordova@7.1.0
+             - ionic cordova platform add android
+             - ionic cordova build android
+             - ionic cordova emulate android
+             - ionic cordova emulate android --livereload
+             - ionic cordova run android
+             - ionic cordova run android --livereload
+             - npm i ionic-long-press@1.5.0 --save
+             - npm i easytimer.js@2.2.3 --save
+             - ionic cordova plugin add cordova-plugin-media
+             - npm i --save @ionic-native/media
+             - ionic cordova plugin add cordova-plugin-file
+             - npm i --save @ionic-native/file

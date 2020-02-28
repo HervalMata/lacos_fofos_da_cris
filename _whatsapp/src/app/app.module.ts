@@ -23,11 +23,16 @@ import { ChatMessagesPageModule } from '../pages/chat-messages/chat-messages/cha
 import { SuperTabsModule } from 'ionic2-super-tabs';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { LongPressModule } from "ionic-long-press";
+import { Media } from "@ionic-native/media";
+import { File } from "@ionic-native/file";
+import { AudioRecorderProvider } from '../providers/audio-recorder/audio-recorder';
 
 function jwtFactory(authService: AuthProvider) {
   return {
     whitelistedDomains: [
-      new RegExp('localhost:8000/*')
+      new RegExp('localhost:8000/*'),
+      new RegExp('192.168.0.8:8000/*')
     ],
     tokenGetter: () => {
       return authService.getToken()
@@ -54,6 +59,7 @@ function jwtFactory(authService: AuthProvider) {
     ReactiveFormsModule,
     SuperTabsModule.forRoot(),
     ChatMessagesPageModule,
+    LongPressModule,
     JwtModule.forRoot({
       jwtOptionsProvider: {
         provide: JWT_OPTIONS,
@@ -81,7 +87,10 @@ function jwtFactory(authService: AuthProvider) {
     FirebaseAuthProvider,
     AuthProvider,
     CustomerHttpProvider,
-    ChatMessageHttpProvider
+    ChatMessageHttpProvider,
+    Media,
+    File,
+    AudioRecorderProvider
   ]
 })
 export class AppModule {}

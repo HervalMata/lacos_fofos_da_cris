@@ -1,6 +1,6 @@
 <!-- Generated template for the ChatFooterComponent component -->
 <ion-list>
-  <ion-item-sliding>
+  <ion-item-sliding #itemSliding (ionDrag)="onDrag()">
     <ion-item class="no-padding-no-margin" color="beige-light">
       <ion-grid>
         <ion-row>
@@ -10,9 +10,16 @@
               <ion-icon item-end name="images" (click)="selectImage()"></ion-icon>
             </ion-item>
           </ion-col>
-          <ion-col col-10 col-md-11 col-sm-10 col-xl-11>
-            <button class="btn btn-message" color="beige-dark" ion-button (click)="sendMessageText()">
-              <ion-icon name="send"></ion-icon>
+          <ion-col col-2 col-md-1 col-sm-2 col-xl-1 class="no-padding-no-margin">
+            <button
+            class="btn btn-message"
+            color="beige-dark"
+            ion-button (click)="sendMessageText()"
+            ion-long-press
+            [interval]="1000 * 60 * 5"
+            (onPressStart)="holdAudioButton()"
+            (onPressEnd)="releaseAudioButton()">
+              <ion-icon [name]="getIconSendMessage()"></ion-icon>
             </button>
           </ion-col>
         </ion-row>

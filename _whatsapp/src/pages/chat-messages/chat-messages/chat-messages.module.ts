@@ -9,6 +9,8 @@ import {ChatFooterComponent} from "../chat-footer/chat-footer";
 import {MomentModule} from "ngx-moment";
 import { Moment } from 'moment';
 import {PipesModule} from "../../../pipes/pipes.module";
+import { LongPressModule } from "ionic-long-press";
+import { AudioRecorderProvider } from '../../../providers/audio-recorder/audio-recorder';
 
 @NgModule({
   declarations: [
@@ -22,9 +24,11 @@ import {PipesModule} from "../../../pipes/pipes.module";
   imports: [
     IonicPageModule.forChild(ChatMessagesPage),
     MomentModule,
-    PipesModule
+    PipesModule,
+    LongPressModule
   ],
-  entryComponents: [ChatMessagesPage]
+  entryComponents: [ChatMessagesPage],
+  providers: [AudioRecorderProvider]
 })
 export class ChatMessagesPageModule {
 }

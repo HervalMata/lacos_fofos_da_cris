@@ -28,7 +28,7 @@ class ChatMessageFb
             //case 'text';
                 $this->upload($data['content']);
                 $uploadFile = $data['content'];
-                $fileUrl = $this->groupFilesDir() . '/' . $uploadFile->hashName();
+                $fileUrl = $this->groupFilesDir() . '/' . $uploadFile->buildFileName($uploadFile);
                 $data['content'] = $fileUrl;
         }
 
@@ -64,7 +64,7 @@ class ChatMessageFb
      */
     private function upload(UploadedFile $file)
     {
-        $file->store($this->groupFilesDir(), ['disk' => 'public']);
+        $file->store($this->groupFilesDir(), $this->buildFileName($file));
     }
 
     /**
@@ -73,5 +73,20 @@ class ChatMessageFb
     private function groupFilesDir()
     {
         return ChatGroup::DIR_CHAT_GROUPS . '/' . $this->chatGroup->id . '/messages_files';
+    }
+
+    /**
+     * @param UploadFile $file
+     * @return string
+     */
+    private function buildFileName(UploadFile $file)
+    {
+        switch ($file->getMimeType()) {
+            case 'audio/x-hx-aac-adts':
+                return "{$file->hashName()}aac";
+
+            default:
+                return $file->hashName();
+        }
     }
 }
