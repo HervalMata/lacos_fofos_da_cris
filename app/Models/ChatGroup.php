@@ -155,11 +155,12 @@ class ChatGroup extends Model
         $this->syncFbSet();
     }
 
-    protected function syncFbSet()
+    protected function syncFbSet($operation = null)
     {
         $data = $this->toArray();
         $data['photo_url'] = $this->photo_url_base;
         unset($data['photo']);
+        $this->setTimestamps($data, $operation);
         $this->getModelReference()->update($data);
     }
 
@@ -174,7 +175,7 @@ class ChatGroup extends Model
         $users = User::whereIn('id', $pivotIds)->get();
         $data = [];
         foreach ($users as $user) {
-            $data["chat_groups/{$model->id}/users/{$user->profile->firebase_uid}"] = true;
+            $data["chat_groups_users/{$model->id}/{$user->profile->firebase_uid}"] = true;
         }
         $this->getFirebaseDatabase()->getReference()->update($data);
     }
@@ -189,8 +190,13 @@ class ChatGroup extends Model
         $users = User::whereIn('id', $pivotIds)->get();
         $data = [];
         foreach ($users as $user) {
-            $data["chat_groups/{$model->id}/users/{$user->profile->firebase_uid}"] = true;
+            $data["chat_groups_users/{$model->id}/{$user->profile->firebase_uid}"] = true;
         }
         $this->getFirebaseDatabase()->getReference()->update($data);
+    }
+
+    public function updateInFb()
+    {
+        $this->syncFbSet(self::$OPERATION_UPDATE);
     }
 }

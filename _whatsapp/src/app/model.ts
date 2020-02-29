@@ -1,16 +1,26 @@
+import { Observable } from "rxjs";
+
 export interface ChatGroup {
   readonly id?: number;
   readonly name: string;
   readonly photo_url: string;
+  is_member?: Observable<boolean>;
+  last_message?: Observable<ChatMessage>;
   readonly created_at?: { date: string };
   readonly updated_at?: { date: string };
+}
+
+export enum Role {
+  SELLER = 1,
+  CUSTOMER = 2
 }
 
 export interface ChatMessage {
   type: string;
   content: string;
   user_id: string;
-  user?: Promise<{ name: string, photo_url: string }>;
+  users?: Promise<{ name: string, photo_url: string }>;
+  user?: User;
   created_at: number;
 }
 
@@ -20,6 +30,7 @@ export interface User {
   email: string;
   password?: string;
   profile?: UserProfile;
+  role: Role;
   readonly created_at?: { date: string };
   readonly updated_at?: { date: string };
 }

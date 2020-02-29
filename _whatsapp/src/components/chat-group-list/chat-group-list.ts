@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {FirebaseAuthProvider} from '../../providers/firebase-auth/firebase-auth';
 import {ChatGroup} from "../../../../_angular-app/src/app/model";
+import { ChatGroupFbProvider } from 'providers/firebase-auth/chat-group-fb';
+import { ChatMessage } from 'app/model';
 
 /**
  * Generated class for the ChatGroupListComponent component.
@@ -16,11 +18,26 @@ export class ChatGroupListComponent {
 
   groups: ChatGroup[] = [];
 
-  constructor(private firebaseAuth: FirebaseAuthProvider) {
+  constructor(
+    private firebaseAuth: FirebaseAuthProvider,
+    private chatGroupFb: ChatGroupFbProvider
+    ) {
   }
 
   ngOnInit() {
-    const database = this.firebaseAuth.firebase.database();
+    this.chatGroupFb.list().subscribe((groups) => console.log(groups));
+    this.chatGroupFb.onAdded().subscribe((group) => {
+      this.groups.unshift(group);
+    });
+    this.chatGroupFb.onChanged().subscribe((group) => {
+      const index = this.groups.findIndex((g) => g.id == group.id);
+      if (index !== -1) {
+        this.groups[index] = group;
+      }
+      this.groups.splice(index, 1);
+      this.groups.unshift(group);
+    });
+    /* const database = this.firebaseAuth.firebase.database();
     database.ref('chat_groups').on('child_added', (data) => {
       const group = data.val() as ChatGroup;
       this.groups.push(group);
@@ -42,6 +59,10 @@ export class ChatGroupListComponent {
       if (index !== -1) {
         this.groups.slice(index, 1);
       }
-    });
+    });*/
+  }
+
+  formatTextMessage(message: ChatMessage) {
+    return message.content.length > 20 ? message.content.slice(0, 20) + '...' : message.content;
   }
 }

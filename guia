@@ -489,3 +489,6 @@ Aplicação mobile
              - npm i --save @ionic-native/media
              - ionic cordova plugin add cordova-plugin-file
              - npm i --save @ionic-native/file
+
+126 - Terminando grupos de chat
+             - php artisan migrate:refresh --seed
