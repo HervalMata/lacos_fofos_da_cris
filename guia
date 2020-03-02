@@ -492,3 +492,5 @@ Aplicação mobile
 
 126 - Terminando grupos de chat
              - php artisan migrate:refresh --seed
+
+126 - Terminando area de mensagens

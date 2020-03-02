@@ -1,5 +1,7 @@
 import {Component, Input} from '@angular/core';
 import { ChatMessage } from '../../../app/model';
+import { BuildUrlPipe } from '../../../pipes/build-url/build-url';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
 
 /**
  * Generated class for the ChatContentDetailComponent component.
@@ -16,7 +18,11 @@ export class ChatContentDetailComponent {
   @Input()
   message: ChatMessage[] = [];
 
-  constructor() {
+  constructor(
+    // @ts-ignore
+    private photoViewer: PhotoViewer,
+    private builderUrl: BuildUrlPipe
+  ) {
   }
 
 }

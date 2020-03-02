@@ -1,12 +1,12 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {FirebaseAuthProvider} from "../firebase-auth/firebase-auth";
-import {Observable} from "rxjs";
+import {Observable} from "rxjs/Observable";
 import {fromPromise} from "rxjs/observable/fromPromise";
 import {flatMap} from "rxjs/operators";
 import {User} from "../../app/model";
 import {JwtHelperService} from "@auth0/angular-jwt";
-import { environment } from 'environments/environment';
+import { environment } from '../../environments/environment';
 
 const TOKEN_KEY = 'lacos_fofos_token';
 

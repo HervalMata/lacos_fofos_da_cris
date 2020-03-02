@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { FirebaseAuthProvider } from "./firebase-auth";
 import { Observable } from "rxjs/Observable";
-import { ChatGroup, Role, ChatMessage } from "app/model";
-import { AuthProvider } from "providers/auth/auth";
+import { ChatGroup, Role, ChatMessage } from "../../app/model";
+import { AuthProvider } from "../auth/auth";
 
 @Injectable()
 export class ChatGroupFbProvider {

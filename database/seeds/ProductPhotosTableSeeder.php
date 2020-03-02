@@ -85,6 +85,9 @@ class ProductPhotosTableSeeder extends Seeder
         $photo->save();
     }
 
+    /**
+     * @return UploadFile
+     */
     private function uploadPhoto($productId) : string
     {
         /** @var SplFileInfo $photoFile */

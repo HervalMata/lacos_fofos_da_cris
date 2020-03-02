@@ -11,7 +11,10 @@ import { Moment } from 'moment';
 import {PipesModule} from "../../../pipes/pipes.module";
 import { LongPressModule } from "ionic-long-press";
 import { AudioRecorderProvider } from '../../../providers/audio-recorder/audio-recorder';
+import { ChatMessageFbProvider } from '../../../providers/firebase-auth/chat-message-fb';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
 
+// @ts-ignore
 @NgModule({
   declarations: [
     ChatMessagesPage,
@@ -28,7 +31,12 @@ import { AudioRecorderProvider } from '../../../providers/audio-recorder/audio-r
     LongPressModule
   ],
   entryComponents: [ChatMessagesPage],
-  providers: [AudioRecorderProvider]
+  providers: [
+    AudioRecorderProvider,
+    ChatMessageFbProvider,
+    // @ts-ignore
+    PhotoViewer
+  ]
 })
 export class ChatMessagesPageModule {
 }

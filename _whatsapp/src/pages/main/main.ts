@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {ChatGroupListComponent} from "../../components/chat-group-list/chat-group-list";
+import { AudioRecorderProvider } from '../../providers/audio-recorder/audio-recorder';
 
 /**
  * Generated class for the MainPage page.
@@ -18,11 +19,22 @@ export class MainPage {
 
   chatGroupList = ChatGroupListComponent;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private audioRecorder: AudioRecorderProvider
+    ) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MainPage');
+    const hasPermissionToRecorder = this.audioRecorder.hasPermission;
+    this.audioRecorder.requestPermission()
+      .then((result) => {
+        console.log('permissão para gravação', result);
+        if (result && !hasPermissionToRecorder) {
+          this.audioRecorder.showAlertToCloseApp();
+        }
+      });
   }
 
 }

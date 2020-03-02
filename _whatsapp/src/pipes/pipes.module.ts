@@ -10,7 +10,11 @@ import {ColorFirstLetterPipe} from './color-first-letter/color-first-letter';
   imports: [],
   exports: [IsCurrentUserPipe,
     BuildUrlPipe,
-    ColorFirstLetterPipe]
+    ColorFirstLetterPipe],
+    providers: [
+      IsCurrentUserPipe,
+      BuildUrlPipe
+    ]
 })
 export class PipesModule {
 }
